@@ -11,7 +11,7 @@ def install():
           author = 'Terry Yin',
           author_email = 'terry.yinze@gmail.com',
           url= 'https://github.com/terryyin/translate',
-          scripts=['translate.py']
+          scripts=['translate']
           )
 
 if __name__ == "__main__":

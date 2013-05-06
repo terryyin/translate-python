@@ -12,7 +12,11 @@
 # beer too.
 # ----------------------------------------------------------------------------
 from unittest import TestCase
+from subprocess import Popen, PIPE
 from translate import Translator
+import sys
+
+decode = [lambda x:x, lambda x:x.decode("utf-8")][sys.version_info.major>2] 
 
 class TestTranslate(TestCase):
 
@@ -35,3 +39,12 @@ class TestTranslate(TestCase):
         translator = Translator(to_lang="en")
         translation = translator.translate("What is \"yinyang\"?")
         self.assertEqual(u"What is \"yinyang\"?",translation)
+
+
+class CommandLineTest(TestCase):
+    def test_command_line_take_zh_as_default_language(self):
+        self.shell = Popen("translate why".split(), stdin = PIPE, stdout = PIPE, stderr = PIPE)
+        stdout, stderr = self.shell.communicate("")
+        self.assertEqual('', decode(stderr))
+        self.assertIn('为什么', decode(stdout))
+        
