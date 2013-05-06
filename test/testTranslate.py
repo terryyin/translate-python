@@ -8,10 +8,10 @@ class TestTranslate(TestCase):
     def test_tranlate_english_to_englsih(self):
         translator = Translator(to_lang="en")
         translation = translator.translate("why")
-        self.assertEquals("why", translation)
+        self.assertEqual(u"why", translation)
 		
     def test_translate_english_to_Chinese(self):
         translator = Translator(to_lang="zh")
         translation = translator.translate("why")
-        self.assertEquals("为什么",translation)
+        self.assertEqual(u"为什么",translation)
 		
