@@ -1,3 +1,15 @@
+#!/usr/bin/env python
+# ----------------------------------------------------------------------------
+# "THE BEER-WARE LICENSE" (Revision 42):
+# <terry.yinzhe@gmail.com> wrote this file. As long as you retain this notice you
+# can do whatever you want with this stuff. If we meet some day, and you think
+# this stuff is worth it, you can buy me a beer in return to Terry Yin.
+#
+# The idea of this is borrowed from <mort.yao@gmail.com>'s brilliant work
+#    https://github.com/soimort/google-translate-cli
+# He uses "THE BEER-WARE LICENSE". That's why I use it too. So you can buy him a 
+# beer too.
+# ----------------------------------------------------------------------------
 import re
 try:
     import urllib2 as request
@@ -22,6 +34,4 @@ class Translator:
         return self.unescape(result.group(1))
 
     def unescape(self, text):
-        def repl(x):
-            return eval('"'+x.group(0)+'"')
         return re.sub(r"\\.?", lambda x:eval('"%s"'%x.group(0)), text)
