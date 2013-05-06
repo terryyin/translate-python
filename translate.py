@@ -8,7 +8,7 @@ except:
 
 class Translator:
 
-    pattern = re.compile(r"\[\[\[\"([^\"]*)\"")
+    pattern = re.compile(r"\[\[\[\"(([^\"\\]|\\.)*)\"")
 
     def __init__(self, to_lang):
         self.to_lang = to_lang
@@ -19,5 +19,9 @@ class Translator:
         req = request.Request(url="http://translate.google.com/translate_a/t?client=t&ie=UTF-8&oe=UTF-8&sl=en&tl=%s&text=%s" % (self.to_lang, escaped_source), headers = headers)
         r = request.urlopen(req)
         result =self.pattern.match(r.read().decode('utf-8'))
-        return result.group(1)
+        return self.unescape(result.group(1))
 
+    def unescape(self, text):
+        def repl(x):
+            return eval('"'+x.group(0)+'"')
+        return re.sub(r"\\.?", lambda x:eval('"%s"'%x.group(0)), text)
