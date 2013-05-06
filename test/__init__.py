@@ -1,2 +1,2 @@
-from testTranslate import *
+from .testTranslate import *
 

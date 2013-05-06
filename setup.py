@@ -7,8 +7,7 @@ from distutils.core import setup
 def install():
     setup(name = 'othello',
           version = "0.0.1",
-          package_dir = {'translate':'src/translate'},
-          packages = ['translate'],
+          py_modules = ['translate'],
           author = 'Terry Yin',
           author_email = 'terry.yinze@gmail.com',
           url= 'https://github.com/terryyin/translate',

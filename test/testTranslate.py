@@ -1,7 +1,7 @@
 #!/usr/bin/evn python
 # -*- coding: utf-8 -*-
 from unittest import TestCase
-from src.translate import Translator
+from translate import Translator
 
 class TestTranslate(TestCase):
 
