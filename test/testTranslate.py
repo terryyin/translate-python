@@ -15,3 +15,9 @@ class TestTranslate(TestCase):
         translation = translator.translate("why")
         self.assertEqual(u"为什么",translation)
 		
+
+    def test_translate_english_to_Chinese_Simple_sentence(self):
+        translator = Translator(to_lang="zh")
+        translation = translator.translate("why stop?")
+        self.assertEqual(u"为什么要停止呢？",translation)
+		
