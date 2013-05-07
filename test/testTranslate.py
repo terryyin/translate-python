@@ -46,3 +46,7 @@ class CommandLineTest(TestCase):
         result = check_output("translate why".split())
         self.assertIn(u'为什么', result.decode("utf-8"))
         
+    def test_command_line_take_string_arg(self):
+        result = check_output(["translate", 'This is a pen.'])
+        self.assertIn(u'这是一支钢笔。', result.decode("utf-8").splitlines())
+        

@@ -12,31 +12,21 @@
 # beer too.
 # ----------------------------------------------------------------------------
 '''
-Translate
+This is a simple, yet powerful command line translator with google translate
+in behind.
 '''
 from translate import Translator
 import sys
 import locale
 
-def ArgParser():
-    from optparse import OptionParser
-    parser = OptionParser()
-    parser.add_option("-v", "--verbose",
-            help="Output in verbose mode (long function name)",
-            action="store_true",
-            dest="verbose",
-            default=False)
-    
-    parser.usage = "translate [options] [word] [\"long sentence.\"] ... "
-    parser.description = __doc__
-    
-    return parser
-
 def main():
-    (options, args) = ArgParser().parse_args(args=sys.argv)
- 
+    import argparse
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('texts', metavar='text', nargs='+',
+                   help='a string to translate(use "" when it\'s a sentence)')
+    args = parser.parse_args()
     translator= Translator(to_lang="zh")
-    translation = translator.translate(args[1])
+    translation = translator.translate(args.texts[0])
     if sys.version_info.major == 2:
         translation =translation.encode(locale.getpreferredencoding())
     sys.stdout.write(translation)
