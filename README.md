@@ -9,8 +9,16 @@ python setup.py install
 </pre> 
 Add sudo in the beginning if you met problem.
 
-## Usage
+## Command-Line Usage
 In your command-line:
 <pre>
 translate "This is a pen."
 </pre>
+
+## Use As A Python Module
+<pre>
+from translate import Translator
+translator= Translator(to_lang="zh")
+translation = translator.translate("This is a pen.")
+</pre>
+The result is in translation, and it's usually a unicode string.
