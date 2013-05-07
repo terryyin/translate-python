@@ -44,5 +44,5 @@ class TestTranslate(TestCase):
 class CommandLineTest(TestCase):
     def test_command_line_take_zh_as_default_language(self):
         result = check_output("translate why".split())
-        self.assertIn(u'', result.decode("utf-8"))
+        self.assertIn(u'为什么', result.decode("utf-8"))
         

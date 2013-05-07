@@ -18,5 +18,7 @@ import locale
 
 translator = Translator(to_lang="zh")
 translation = translator.translate("why")
-sys.stdout.write(translation.encode(locale.getpreferredencoding()))
+if sys.version_info.major == 2:
+    translation =translation.encode(locale.getpreferredencoding())
+sys.stdout.write(translation)
 sys.stdout.write("\n")
