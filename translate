@@ -11,14 +11,36 @@
 # He uses "THE BEER-WARE LICENSE". That's why I use it too. So you can buy him a 
 # beer too.
 # ----------------------------------------------------------------------------
-
+'''
+Translate
+'''
 from translate import Translator
 import sys
 import locale
 
-translator = Translator(to_lang="zh")
-translation = translator.translate("why")
-if sys.version_info.major == 2:
-    translation =translation.encode(locale.getpreferredencoding())
-sys.stdout.write(translation)
-sys.stdout.write("\n")
+def ArgParser():
+    from optparse import OptionParser
+    parser = OptionParser()
+    parser.add_option("-v", "--verbose",
+            help="Output in verbose mode (long function name)",
+            action="store_true",
+            dest="verbose",
+            default=False)
+    
+    parser.usage = "translate [options] [word] [\"long sentence.\"] ... "
+    parser.description = __doc__
+    
+    return parser
+
+def main():
+    (options, args) = ArgParser().parse_args(args=sys.argv)
+ 
+    translator= Translator(to_lang="zh")
+    translation = translator.translate(args[1])
+    if sys.version_info.major == 2:
+        translation =translation.encode(locale.getpreferredencoding())
+    sys.stdout.write(translation)
+    sys.stdout.write("\n")
+
+if __name__ == "__main__":
+    main()
