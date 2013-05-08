@@ -40,6 +40,11 @@ class TestTranslate(TestCase):
         translation = translator.translate("What is \"yinyang\"?")
         self.assertEqual(u"What is \"yinyang\"?",translation)
 
+    def test_translate_With_multiple_sentences(self):
+        translator = Translator(to_lang="zh")
+        translation = translator.translate("yes. no.")
+        self.assertIn(u'是。', translation)
+        self.assertIn(u'没有。', translation)
 
 class CommandLineTest(TestCase):
     def test_command_line_take_zh_as_default_language(self):

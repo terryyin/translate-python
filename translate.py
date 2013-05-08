@@ -19,19 +19,57 @@ except:
     from urllib.parse import quote
 
 class Translator:
-
-    pattern = re.compile(r"\[\[\[\"(([^\"\\]|\\.)*)\"")
+    string_pattern = r"\"(([^\"\\]|\\.)*)\""
+    match_string =re.compile(
+                        r"\,?\[" 
+                           + string_pattern + r"\," 
+                           + string_pattern + r"\," 
+                           + string_pattern + r"\," 
+                           + string_pattern
+                        +r"\]")
 
     def __init__(self, to_lang):
         self.to_lang = to_lang
    
     def translate(self, source):
+        json5 = self._get_json5_from_google(source)
+        return self._unescape(self._get_translation_from_json5(json5))
+
+    def _get_translation_from_json5(self, content):
+        result = ""
+        pos = 2
+        while True:
+            m = self.match_string.match(content, pos)
+            if not m:
+                break
+            result += m.group(1)
+            pos = m.end()
+        return result 
+
+    def _get_json5_from_google(self, source):
         escaped_source = quote(source, '')
         headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19'}
         req = request.Request(url="http://translate.google.com/translate_a/t?client=t&ie=UTF-8&oe=UTF-8&sl=en&tl=%s&text=%s" % (self.to_lang, escaped_source), headers = headers)
         r = request.urlopen(req)
-        result =self.pattern.match(r.read().decode('utf-8'))
-        return self.unescape(result.group(1))
+        return r.read().decode('utf-8')
 
-    def unescape(self, text):
+    def _unescape(self, text):
         return re.sub(r"\\.?", lambda x:eval('"%s"'%x.group(0)), text)
+
+def main():
+    import argparse
+    import sys
+    import locale
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('texts', metavar='text', nargs='+',
+                   help='a string to translate(use "" when it\'s a sentence)')
+    args = parser.parse_args()
+    translator= Translator(to_lang="zh")
+    translation = translator.translate(args.texts[0])
+    if sys.version_info.major == 2:
+        translation =translation.encode(locale.getpreferredencoding())
+    sys.stdout.write(translation)
+    sys.stdout.write("\n")
+
+if __name__ == "__main__":
+    main()

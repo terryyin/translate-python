@@ -15,22 +15,7 @@
 This is a simple, yet powerful command line translator with google translate
 in behind.
 '''
-from translate import Translator
-import sys
-import locale
-
-def main():
-    import argparse
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('texts', metavar='text', nargs='+',
-                   help='a string to translate(use "" when it\'s a sentence)')
-    args = parser.parse_args()
-    translator= Translator(to_lang="zh")
-    translation = translator.translate(args.texts[0])
-    if sys.version_info.major == 2:
-        translation =translation.encode(locale.getpreferredencoding())
-    sys.stdout.write(translation)
-    sys.stdout.write("\n")
+from translate import main
 
 if __name__ == "__main__":
     main()
