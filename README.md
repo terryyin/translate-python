@@ -1,7 +1,9 @@
 google-translate-python
 =======================
 
-Google translate as Python module &amp; command line tool. No key, no authentication whatsoever.
+Google translate as Python module &amp; command line tool. No key, no authentication whatsoever. The default target language is Simplified Chinese.
+
+利用google translate实现的命令行工具（translate），也可以当做Python模块用在你的代码中。
 
 ## Installation
 

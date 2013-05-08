@@ -12,7 +12,7 @@
 # ----------------------------------------------------------------------------
 '''
 This is a simple, yet powerful command line translator with google translate
-in behind.
+behind it. You can also use it as a Python module in your code.
 '''
 import re
 try:
