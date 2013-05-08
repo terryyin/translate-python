@@ -25,6 +25,12 @@ In your command-line:
 translate "This is a pen."
 </pre>
 
+Or
+
+<pre>
+translate -f zh -t ja 我是谁？
+</pre>
+
 ## Use As A Python Module
 
 <pre>
