@@ -11,10 +11,6 @@
 # He uses "THE BEER-WARE LICENSE". That's why I use it too. So you can buy him a 
 # beer too.
 # ----------------------------------------------------------------------------
-'''
-This is a simple, yet powerful command line translator with google translate
-in behind.
-'''
 from translate import main
 
 if __name__ == "__main__":
