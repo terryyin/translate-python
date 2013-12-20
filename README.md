@@ -33,6 +33,27 @@ Or
 translate -f zh -t ja 我是谁？
 </pre>
 
+With input file to standard output (default languages)
+Double quotes are essential, bug to fix
+
+<pre>
+translate -i file_in ""
+</pre>
+
+With input file to output file (default languages)
+Double quotes are essential, bug to fix
+
+<pre>
+translate -i file_in -o file_out ""
+</pre>
+
+with standard input to output file (default languages)
+Double quotes are essential, bug to fix
+
+<pre>
+translate -o file_out ""
+</pre>
+
 ## Use As A Python Module
 
 <pre>

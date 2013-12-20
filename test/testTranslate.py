@@ -67,3 +67,4 @@ class CommandLineTest(TestCase):
     def test_command_line_from_language(self):
         result = check_output(["translate", '--from', 'ja', '美'])
         self.assertIn(u'美女', result.decode("utf-8").splitlines())
+
