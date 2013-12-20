@@ -98,13 +98,13 @@ def main():
         i = iter(args.texts)
     
     while tls:
-        if file_in: #Si un fichier est donne en entree
+        if file_in:
             line = file_in.readline()
-        else: #Sinon, on a l'iterateur, on prend le suivant
+        else:
             line = next(i, '')
-        if line == '': #Des que on a plus rien a lire
+        if line == '': 
             tls = False
-        else: #Sinon on traduit
+        else:
             translation = translator.translate(line)
             w(args.f_out, line, translation, args.u)
           
