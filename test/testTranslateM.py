@@ -30,5 +30,3 @@ class TranslateMTest(unittest.TestCase):
         self.assertEqual(['bonjour'], readFile(self.f_tmp))
         remove(self.f_tmp)
 
-
-unittest.main()
