@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # ----------------------------------------------------------------------------
+# Modified by geekstay <geekstay@gmail.com> : input and output file accepted 
+# ----------------------------------------------------------------------------
 # "THE BEER-WARE LICENSE" (Revision 42):
 # <terry.yinzhe@gmail.com> wrote this file. As long as you retain this notice you
 # can do whatever you want with this stuff. If we meet some day, and you think
@@ -14,7 +16,10 @@
 This is a simple, yet powerful command line translator with google translate
 behind it. You can also use it as a Python module in your code.
 '''
+import locale
+import sys
 import re
+
 try:
     import urllib2 as request
     from urllib import quote
@@ -66,23 +71,57 @@ class Translator:
 
 def main():
     import argparse
-    import sys
-    import locale
+    
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('texts', metavar='text', nargs='+',
                    help='a string to translate(use "" when it\'s a sentence)')
-    parser.add_argument('-t', '--to', dest='to_lang', type=str, default='zh',
-                   help='To language (e.g. zh, zh-TW, en, ja, ko). Default is zh.')
-    parser.add_argument('-f', '--from', dest='from_lang', type=str, default='auto',
-                   help='From language (e.g. zh, zh-TW, en, ja, ko). Default is auto.')
+    parser.add_argument('-t', '--to', dest='to_lang', type=str, default='fr',
+                   help='To language (e.g. zh, zh-TW, en, ja, ko). Default is fr.')
+    parser.add_argument('-f', '--from', dest='from_lang', type=str, default='en',
+                   help='From language (e.g. zh, zh-TW, en, ja, ko). Default is en.')
+    parser.add_argument("-i", "--input", dest="f_in", type=str, default=None,
+                   help='Input file. Translate each line of input file. Default is stdin')
+    parser.add_argument("-o", "--output", dest="f_out", type=str, default=None,
+                   help='Output file. Appends each args translating to output file, one a line. Default is stdout')
+    parser.add_argument("-u", help="to unified directly in a file within first string to translate is seperated by ' : ' from the translated string", action="store_true") 
     args = parser.parse_args()
-    translator= Translator(from_lang=args.from_lang, to_lang=args.to_lang)
-    for text in args.texts:
-        translation = translator.translate(text)
-        if sys.version_info.major == 2:
-            translation =translation.encode(locale.getpreferredencoding())
-        sys.stdout.write(translation)
-        sys.stdout.write("\n")
 
+    translator= Translator(from_lang=args.from_lang, to_lang=args.to_lang)
+    tls = True
+    try:
+        file_in = open(args.f_in)
+    except IOError as e:
+        print e
+        tls = False
+    except TypeError:
+        i = iter(args.texts)
+    
+    while tls:
+        if file_in: #Si un fichier est donne en entree
+            line = file_in.readline()
+        else: #Sinon, on a l'iterateur, on prend le suivant
+            line = next(i, '')
+        if line == '': #Des que on a plus rien a lire
+            tls = False
+        else: #Sinon on traduit
+            translation = translator.translate(line)
+            w(args.f_out, line, translation, args.u)
+          
+def w(f, a, t, u):
+    if sys.version_info.major == 2:
+        t=t.encode(locale.getpreferredencoding())
+        try:
+            file_out = open(f, "a")
+            if u:
+                file_out.write(a + " : ")
+            file_out.write(t)
+            file_out.write("\n")
+            file_out.close()
+        except TypeError:
+            sys.stdout.write(t)
+            sys.stdout.write("\n")
+        except IOError, e:
+            print e
+                 
 if __name__ == "__main__":
     main()
