@@ -94,6 +94,7 @@ def main():
         print e
         tls = False
     except TypeError:
+        file_in = None
         i = iter(args.texts)
     
     while tls:
