@@ -1,5 +1,4 @@
 import unittest
-from translate import Translator
 from subprocess import check_output
 from os import system, remove
 
