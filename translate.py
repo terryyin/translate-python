@@ -15,6 +15,7 @@ This is a simple, yet powerful command line translator with google translate
 behind it. You can also use it as a Python module in your code.
 '''
 import re
+import json
 try:
     import urllib2 as request
     from urllib import quote
@@ -62,7 +63,7 @@ class Translator:
         return r.read().decode('utf-8')
 
     def _unescape(self, text):
-        return re.sub(r"\\.?", lambda x:eval('"%s"'%x.group(0)), text)
+        return json.loads('"%s"' % text)
 
 def main():
     import argparse
