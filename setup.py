@@ -11,7 +11,7 @@ def install():
         long_description = translate.__doc__
     setup(
           name = 'translate',
-          version = "0.0.3",
+          version = "0.0.5",
           description = translate.__doc__,
           long_description = long_description,
           url = 'https://github.com/terryyin/google-translate-python',
