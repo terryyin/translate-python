@@ -16,6 +16,7 @@ behind it. You can also use it as a Python module in your code.
 '''
 import re
 import json
+from textwrap import wrap
 try:
     import urllib2 as request
     from urllib import quote
@@ -38,8 +39,12 @@ class Translator:
         self.to_lang = to_lang
    
     def translate(self, source):
-        json5 = self._get_json5_from_google(source)
-        return self._unescape(self._get_translation_from_json5(json5))
+        self.source_list = wrap(source, 1000, replace_whitespace=False)
+        output = ''
+        for s in self.source_list:
+            json5 = self._get_json5_from_google(s)
+            output += ' %s' % self._unescape(self._get_translation_from_json5(json5))
+        return output
 
     def _get_translation_from_json5(self, content):
         result = ""
