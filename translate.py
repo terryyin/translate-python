@@ -37,14 +37,14 @@ class Translator:
     def __init__(self, to_lang, from_lang='en'):
         self.from_lang = from_lang
         self.to_lang = to_lang
-   
+
     def translate(self, source):
         self.source_list = wrap(source, 1000, replace_whitespace=False)
-        output = ''
-        for s in self.source_list:
-            json5 = self._get_json5_from_google(s)
-            output += ' %s' % self._unescape(self._get_translation_from_json5(json5))
-        return output
+        return ' '.join(self._get_translation_from_google(s) for s in self.source_list)
+
+    def _get_translation_from_google(self, source):
+        json5 = self._get_json5_from_google(source)
+        return self._unescape(self._get_translation_from_json5(json5))
 
     def _get_translation_from_json5(self, content):
         result = ""
