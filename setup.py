@@ -6,12 +6,12 @@ import translate
 from distutils.core import setup
 def install():
     try:
-        long_description = open("README.md").read()
+        long_description = open("README.rst").read()
     except:
         long_description = translate.__doc__
     setup(
           name = 'translate',
-          version = "0.0.5",
+          version = "0.0.6",
           description = translate.__doc__,
           long_description = long_description,
           url = 'https://github.com/terryyin/google-translate-python',
