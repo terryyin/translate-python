@@ -13,7 +13,6 @@ Installation
 
 ::
 
-   <pre>
    pip install translate
 
 Or, you can download the source and
