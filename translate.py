@@ -34,7 +34,7 @@ class Translator:
                            + string_pattern
                         +r"\]")
 
-    def __init__(self, to_lang, from_lang='en'):
+    def __init__(self, to_lang, from_lang='auto'):
         self.from_lang = from_lang
         self.to_lang = to_lang
 
