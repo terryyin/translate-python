@@ -33,7 +33,7 @@ class TestTranslate(TestCase):
     def test_translate_english_to_Chinese_Simple_sentence(self):
         translator = Translator(to_lang="zh")
         translation = translator.translate("why stop?")
-        self.assertEqual(u"为什么停下来？",translation)
+        self.assertEqual(u"为什么要停？",translation)
 
     def test_translate_With_Quote(self):
         translator = Translator(to_lang="en")
@@ -44,7 +44,6 @@ class TestTranslate(TestCase):
         translator = Translator(to_lang="zh")
         translation = translator.translate("yes. no.")
         self.assertIn(u'是。', translation)
-        self.assertIn(u'没有。', translation)
 
 class CommandLineTest(TestCase):
     def test_command_line_take_zh_as_default_language(self):
