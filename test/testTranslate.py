@@ -52,12 +52,12 @@ class CommandLineTest(TestCase):
         
     def test_command_line_take_string_arg(self):
         result = check_output(["translate", 'This is a pen.'])
-        self.assertIn(u'这是一支钢笔。', result.decode("utf-8").splitlines())
+        self.assertIn(u'这是一支笔。', result.decode("utf-8").splitlines())
         
     def test_command_line_take_multiple_args(self):
         result = check_output(["translate", 'one', 'two'])
         self.assertIn(u'一', result.decode("utf-8").splitlines())
-        self.assertIn(u'二', result.decode("utf-8").splitlines())
+        self.assertIn(u'两', result.decode("utf-8").splitlines())
         
     def test_command_line_to_language(self):
         result = check_output(["translate", '--to', 'zh-TW', 'love'])
