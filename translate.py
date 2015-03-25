@@ -35,7 +35,10 @@ class Translator:
 
     def _get_translation_from_google(self, source):
         json5 = self._get_json5_from_google(source)
-        return json.loads(json5)['sentences'][0]['trans']
+        translation = ''
+        for sentence in json.loads(json5)['sentences']:
+            translation += sentence['trans']
+        return translation
 
     def _get_json5_from_google(self, source):
         escaped_source = quote(source, '')
