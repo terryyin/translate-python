@@ -12,6 +12,13 @@
 # beer too.
 # ----------------------------------------------------------------------------
 from translate import main
+import ConfigParser, os
 
 if __name__ == "__main__":
-    main()
+    parser = ConfigParser.SafeConfigParser({'from_lang': 'auto', 'to_lang': 'zh'})
+    fn = os.path.expanduser('~/.python-translate.cfg')
+    if not parser.read(fn):
+        with open(fn, 'wb') as configfile:
+            parser.write(configfile) 
+    d = 'DEFAULT'
+    main({'f': parser.get(d,'from_lang'), 't':parser.get(d,'to_lang') })
