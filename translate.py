@@ -50,17 +50,21 @@ class Translator:
         r = request.urlopen(req)
         return r.read().decode('utf-8')
 
-def main():
+def main(defvals=None):
     import argparse
     import sys
     import locale
+
+    if defvals is None:
+       defvals = {'f':'auto', 't':'zh'} 
+
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('texts', metavar='text', nargs='+',
                    help='a string to translate(use "" when it\'s a sentence)')
-    parser.add_argument('-t', '--to', dest='to_lang', type=str, default='zh',
-                   help='To language (e.g. zh, zh-TW, en, ja, ko). Default is zh.')
-    parser.add_argument('-f', '--from', dest='from_lang', type=str, default='auto',
-                   help='From language (e.g. zh, zh-TW, en, ja, ko). Default is auto.')
+    parser.add_argument('-t', '--to', dest='to_lang', type=str, default=defvals['t'],
+                   help='To language (e.g. zh, zh-TW, en, ja, ko). Default is '+defvals['t']+'.')
+    parser.add_argument('-f', '--from', dest='from_lang', type=str, default=defvals['f'],
+                   help='From language (e.g. zh, zh-TW, en, ja, ko). Default is '+defvals['f']+'.')
     args = parser.parse_args()
     translator= Translator(from_lang=args.from_lang, to_lang=args.to_lang)
     for text in args.texts:
