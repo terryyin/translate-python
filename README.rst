@@ -48,3 +48,16 @@ Use As A Python Module
    translation = translator.translate("This is a pen.")
 
 The result is in translation, and it’s usually a unicode string.
+
+Change Default Languages
+----------------------
+
+In ~/.python-translate.cfg:
+
+::
+
+   [DEFAULT]
+   from_lang = auto
+   to_lang = 'de'
+
+The cfg is not for using as a Python module.
