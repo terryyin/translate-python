@@ -11,11 +11,11 @@ def install():
         long_description = translate.__doc__
     setup(
           name = 'translate',
-          version = "1.0.7",
+          version = "1.0.8",
           description = translate.__doc__,
           long_description = long_description,
           url = 'https://github.com/terryyin/google-translate-python',
-          classifiers = ['Development Status :: 4 - Beta',
+          classifiers = ['Development Status :: 5 - Production/Stable',
                      'Intended Audience :: Education',
                      'Intended Audience :: End Users/Desktop',
                      'License :: Freeware',
@@ -27,7 +27,8 @@ def install():
                      'Programming Language :: Python :: 2.6',
                      'Programming Language :: Python :: 2.7',
                      'Programming Language :: Python :: 3.2',
-                     'Programming Language :: Python :: 3.3'],
+                     'Programming Language :: Python :: 3.3',
+                     'Programming Language :: Python :: 3.4'],
           py_modules = ['translate'],
           author = 'Terry Yin',
           author_email = 'terry.yinze@gmail.com',
