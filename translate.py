@@ -5,10 +5,12 @@
 # can do whatever you want with this stuff. If we meet some day, and you think
 # this stuff is worth it, you can buy me a beer in return to Terry Yin.
 #
-# The idea of this is borrowed from <mort.yao@gmail.com>'s brilliant work
+# Now google has stop providing free translation API. So I have to switch to
+# http://mymemory.translated.net/, which has a limit for 1000 words/day free
+# usage.
+#
+# The original idea of this is borrowed from <mort.yao@gmail.com>'s brilliant work
 #    https://github.com/soimort/google-translate-cli
-# He uses "THE BEER-WARE LICENSE". That's why I use it too. So you can buy him a 
-# beer too.
 # ----------------------------------------------------------------------------
 '''
 This is a simple, yet powerful command line translator with google translate

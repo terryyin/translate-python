@@ -1,9 +1,13 @@
 google-translate-python
 =======================
 
-Google translate as Python module & command line tool. No key, no
-authentication whatsoever. The default target language is Simplified
-Chinese.
+Now google has stop providing free translation API. So I have to switch to
+http://mymemory.translated.net/, which has a limit for 1000 words/day free
+usage. Please let me know if there's any other better free translation API.
+
+The default from language is English (en).
+The default to language is Simplified Chinese (zh). Of course, you can specify it
+in the parameter or commandline.
 
 利用google
 translate实现的命令行工具（translate），也可以当做Python模块用在你的代码中。
