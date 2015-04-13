@@ -25,28 +25,30 @@ except:
     from urllib.parse import quote
 
 class Translator:
-    def __init__(self, to_lang, from_lang='auto'):
+    def __init__(self, to_lang, from_lang='en'):
         self.from_lang = from_lang
         self.to_lang = to_lang
 
     def translate(self, source):
+        if self.from_lang == self.to_lang:
+            return source
         self.source_list = wrap(source, 1000, replace_whitespace=False)
         return ' '.join(self._get_translation_from_google(s) for s in self.source_list)
 
     def _get_translation_from_google(self, source):
         json5 = self._get_json5_from_google(source)
-        translation = ''
-        for sentence in json.loads(json5)['sentences']:
-            translation += sentence['trans']
-        return translation
+        return json.loads(json5)['responseData']['translatedText']
 
     def _get_json5_from_google(self, source):
         escaped_source = quote(source, '')
         headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19'}
         req = request.Request(
-             url="http://translate.google.com/translate_a/t?client=p&ie=UTF-8&oe=UTF-8"
-                 +"&sl=%s&tl=%s&text=%s" % (self.from_lang, self.to_lang, escaped_source)
+             url="http://mymemory.translated.net/api/get?q=%s&langpair=%s|%s" % (escaped_source, self.from_lang, self.to_lang)
                  , headers = headers)
+
+             #url="http://translate.google.com/translate_a/t?clien#t=p&ie=UTF-8&oe=UTF-8"
+                 #+"&sl=%s&tl=%s&text=%s" % (self.from_lang, self.to_lang, escaped_source)
+                 #, headers = headers)
         r = request.urlopen(req)
         return r.read().decode('utf-8')
 
@@ -56,7 +58,7 @@ def main(defvals=None):
     import locale
 
     if defvals is None:
-       defvals = {'f':'auto', 't':'zh'} 
+       defvals = {'f':'en', 't':'zh'} 
 
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('texts', metavar='text', nargs='+',

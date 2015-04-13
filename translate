@@ -16,7 +16,7 @@ from translate import main
 if __name__ == "__main__":
     try:
         import ConfigParser, os
-        parser = ConfigParser.SafeConfigParser({'from_lang': 'auto', 'to_lang': 'zh'})
+        parser = ConfigParser.SafeConfigParser({'from_lang': 'en', 'to_lang': 'zh'})
         fn = os.path.expanduser('~/.python-translate.cfg')
         if not parser.read(fn):
             with open(fn, 'wb') as configfile:
@@ -24,5 +24,5 @@ if __name__ == "__main__":
         d = 'DEFAULT'
         config = {'f': parser.get(d,'from_lang'), 't':parser.get(d,'to_lang') }
     except ImportError:
-      config = {'f': 'zh', 't':'auto' }
-    main()
+      config = {'f': 'zh', 't':'en' }
+    main(config)

@@ -28,22 +28,22 @@ class TestTranslate(TestCase):
     def test_translate_english_to_Chinese(self):
         translator = Translator(to_lang="zh")
         translation = translator.translate("why")
-        self.assertEqual(u"为什么",translation)
+        self.assertEqual(u"为什么这样说呢？",translation)
 		
     def test_translate_english_to_Chinese_Simple_sentence(self):
         translator = Translator(to_lang="zh")
         translation = translator.translate("why stop?")
-        self.assertEqual(u"为什么要停？",translation)
+        self.assertEqual(u"为什么停下来？",translation)
 
     def test_translate_With_Quote(self):
-        translator = Translator(to_lang="en")
+        translator = Translator(to_lang="zh")
         translation = translator.translate("What is \"yinyang\"?")
-        self.assertEqual(u"What is \"yinyang\"?",translation)
+        self.assertEqual(u"\"阴阳\"是什么？",translation)
 
     def test_translate_With_multiple_sentences(self):
         translator = Translator(to_lang="zh")
         translation = translator.translate("yes. no.")
-        self.assertIn(u'是。', translation)
+        self.assertIn(u'会 不会', translation)
 
 class CommandLineTest(TestCase):
     def test_command_line_take_zh_as_default_language(self):
@@ -52,12 +52,12 @@ class CommandLineTest(TestCase):
         
     def test_command_line_take_string_arg(self):
         result = check_output(["translate", 'This is a pen.'])
-        self.assertIn(u'这是一支笔。', result.decode("utf-8").splitlines())
+        self.assertIn(u'这是一支钢笔。', result.decode("utf-8").splitlines())
         
     def test_command_line_take_multiple_args(self):
         result = check_output(["translate", 'one', 'two'])
-        self.assertIn(u'一', result.decode("utf-8").splitlines())
-        self.assertIn(u'两', result.decode("utf-8").splitlines())
+        self.assertIn(u'一个', result.decode("utf-8").splitlines())
+        self.assertIn(u'二个', result.decode("utf-8").splitlines())
         
     def test_command_line_to_language(self):
         result = check_output(["translate", '--to', 'zh-TW', 'love'])
@@ -65,4 +65,4 @@ class CommandLineTest(TestCase):
 
     def test_command_line_from_language(self):
         result = check_output(["translate", '--from', 'ja', '美'])
-        self.assertIn(u'美女', result.decode("utf-8").splitlines())
+        self.assertIn(u'美', result.decode("utf-8").splitlines())
