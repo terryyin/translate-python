@@ -39,8 +39,9 @@ class Translator:
     def _get_translation_from_google(self, source):
         json5 = self._get_json5_from_google(source)
         data = json.loads(json5)
-        if not isinstance(data['responseData']['translatedText'], bool):
-            return data['responseData']['translatedText']
+        translation = data['responseData']['translatedText']
+        if not isinstance(translation, bool):
+            return translation
         else:
             matches = data['matches']
             for match in matches:
