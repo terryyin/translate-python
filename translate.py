@@ -27,10 +27,10 @@ except:
     from urllib.parse import quote
 
 class Translator:
-    def __init__(self, to_lang, from_lang='en',email = None):
+    def __init__(self, to_lang, from_lang='en'):
         self.from_lang = from_lang
         self.to_lang = to_lang
-        self.email = email
+
     def translate(self, source):
         if self.from_lang == self.to_lang:
             return source
@@ -44,14 +44,9 @@ class Translator:
     def _get_json5_from_google(self, source):
         escaped_source = quote(source, '')
         headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19'}
-        if self.email is not None:
-            req = request.Request(
-                 url="http://mymemory.translated.net/api/get?q=%s&langpair=%s|%s&de=%s" % (escaped_source, self.from_lang, self.to_lang,self.email)
-                     , headers = headers)
-        else:
-            req = request.Request(
-                                  url="http://mymemory.translated.net/api/get?q=%s&langpair=%s|%s" % (escaped_source, self.from_lang, self.to_lang)
-                                  , headers = headers)
+        req = request.Request(
+             url="http://mymemory.translated.net/api/get?q=%s&langpair=%s|%s" % (escaped_source, self.from_lang, self.to_lang)
+                 , headers = headers)
 
              #url="http://translate.google.com/translate_a/t?clien#t=p&ie=UTF-8&oe=UTF-8"
                  #+"&sl=%s&tl=%s&text=%s" % (self.from_lang, self.to_lang, escaped_source)
@@ -65,7 +60,7 @@ def main(defvals=None):
     import locale
 
     if defvals is None:
-       defvals = {'f':'en', 't':'zh','e':None}
+       defvals = {'f':'en', 't':'zh'} 
 
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('texts', metavar='text', nargs='+',
@@ -74,11 +69,8 @@ def main(defvals=None):
                    help='To language (e.g. zh, zh-TW, en, ja, ko). Default is '+defvals['t']+'.')
     parser.add_argument('-f', '--from', dest='from_lang', type=str, default=defvals['f'],
                    help='From language (e.g. zh, zh-TW, en, ja, ko). Default is '+defvals['f']+'.')
-    parser.add_argument('-e', '--email', dest='email', type=str, default=defvals['e'],
-                    help='Add your email to increase the limit to 10000 words/day(now is 1000 words/day) '+str(defvals['e'])+'.')
-    
     args = parser.parse_args()
-    translator= Translator(from_lang=args.from_lang, to_lang=args.to_lang,email=args.email)
+    translator= Translator(from_lang=args.from_lang, to_lang=args.to_lang)
     for text in args.texts:
         translation = translator.translate(text)
         if sys.version_info.major == 2:
