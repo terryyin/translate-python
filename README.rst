@@ -65,3 +65,10 @@ In ~/.python-translate.cfg:
    to_lang = 'de'
 
 The cfg is not for using as a Python module.
+
+Contribution
+-----------------------
+
+Please send pull requests, very much appriciated.
+
+If you find an incorrect translation, one thing you can do is to create an account at http://mymemory.translated.net/ and fix their data.
