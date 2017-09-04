@@ -29,6 +29,15 @@ class Translator:
     def __init__(self, to_lang, from_lang='en'):
         self.from_lang = from_lang
         self.to_lang = to_lang
+        self.email = 'mymemory@trash-mail.com'
+        '''
+        CHANGE THIS EMAIL!!!
+        Change to a valid email where we can reach you in case of troubles.
+        With a valid email you get 10 times more words/day to translate.
+        For further infomations checkout:
+        http://mymemory.translated.net/doc/usagelimits.php
+        http://mymemory.translated.net/doc/spec.php
+        '''
 
     def translate(self, source):
         if self.from_lang == self.to_lang:
@@ -55,8 +64,8 @@ class Translator:
         headers = {'User-Agent':
                    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/535.19\
                    (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19'}
-        api_url = "http://mymemory.translated.net/api/get?q=%s&langpair=%s|%s"
-        req = request.Request(url=api_url % (escaped_source, self.from_lang, self.to_lang),
+        api_url = 'http://api.mymemory.translated.net/get?q=%s&langpair=%s|%s&de=%s'
+        req = request.Request(url=api_url % (escaped_source, self.from_lang, self.to_lang, self.email),
                               headers=headers)
 
         # url="http://translate.google.com/translate_a/t?clien#t=p&ie=UTF-8&oe=UTF-8"
