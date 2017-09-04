@@ -65,6 +65,7 @@ In ~/.python-translate.cfg:
    to_lang = 'de'
 
 The cfg is not for using as a Python module.
+The country code, as far as I know, is following https://en.wikipedia.org/wiki/ISO_639-1.
 
 Contribution
 -----------------------
