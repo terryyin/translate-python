@@ -53,6 +53,13 @@ Use As A Python Module
 
 The result is in translation, and it’s usually a unicode string.
 
+API usage limits
+----------------
+Free, anonymous usage is limited to 1000 words/day.
+To get more words/day add your email-adress in the Translator-class.
+For further usage contact mymemory as CAT tool maker:
+http://mymemory.translated.net/doc/usagelimits.php
+
 Change Default Languages
 ----------------------
 
