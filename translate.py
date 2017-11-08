@@ -16,54 +16,42 @@
 This is a simple, yet powerful command line translator with google translate
 behind it. You can also use it as a Python module in your code.
 '''
-import json
 from textwrap import wrap
-try:
-    import urllib2 as request
-    from urllib import quote
-except:
-    from urllib import request
-    from urllib.parse import quote
+
+import requests
+
+
+TRANSLATION_API_MAX_LENGHT = 1000
+
 
 class Translator:
     def __init__(self, to_lang, from_lang='en'):
         self.from_lang = from_lang
         self.to_lang = to_lang
+        self.base_url = 'http://mymemory.translated.net/api/get'
+        self.headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/535.19\
+                                       (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19'}
 
-    def translate(self, source):
-        if self.from_lang == self.to_lang:
-            return source
-        self.source_list = wrap(source, 1000, replace_whitespace=False)
-        return ' '.join(self._get_translation_from_google(s) for s in self.source_list)
+    def _get_translation(self, text):
+        languages = '{}|{}'.format(self.from_lang, self.to_lang)
+        params = {'q': text, 'langpair': languages}
+        response = requests.get(self.base_url, params=params, headers=self.headers)
+        data = response.json()
 
-    def _get_translation_from_google(self, source):
-        json5 = self._get_json5_from_google(source)
-        data = json.loads(json5)
         translation = data['responseData']['translatedText']
-        if not isinstance(translation, bool):
+        if translation:
             return translation
         else:
             matches = data['matches']
-            for match in matches:
-                if not isinstance(match['translation'], bool):
-                    next_best_match = match['translation']
-                    break
-            return next_best_match
+            next_best_match = next(match for match in matches)
+            return next_best_match['translation']
 
-    def _get_json5_from_google(self, source):
-        escaped_source = quote(source, '')
-        headers = {'User-Agent':
-                   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/535.19\
-                   (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19'}
-        api_url = "http://mymemory.translated.net/api/get?q=%s&langpair=%s|%s"
-        req = request.Request(url=api_url % (escaped_source, self.from_lang, self.to_lang),
-                              headers=headers)
+    def translate(self, text):
+        if self.from_lang == self.to_lang:
+            return text
+        text_list = wrap(text, TRANSLATION_API_MAX_LENGHT, replace_whitespace=False)
+        return ' '.join(self._get_translation(text) for text in text_list)
 
-        # url="http://translate.google.com/translate_a/t?clien#t=p&ie=UTF-8&oe=UTF-8"
-        # +"&sl=%s&tl=%s&text=%s" % (self.from_lang, self.to_lang, escaped_source)
-        # , headers = headers)
-        r = request.urlopen(req)
-        return r.read().decode('utf-8')
 
 def main(defvals=None):
     import argparse
