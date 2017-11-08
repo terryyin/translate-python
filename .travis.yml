@@ -5,8 +5,8 @@ python:
   - "3.5"
   - "3.6"
 install:
-  - python setup.py install
+  - pip install -r requirements-dev.txt
 
 script:
-  - python -munittest test
+  - py.test -vv -s
 
