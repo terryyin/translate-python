@@ -11,7 +11,7 @@
 # He uses "THE BEER-WARE LICENSE". That's why I use it too. So you can buy him a
 # beer too.
 # ----------------------------------------------------------------------------
-from translate import main
+from translate.main import main
 
 if __name__ == "__main__":
     try:
@@ -26,5 +26,5 @@ if __name__ == "__main__":
         d = 'DEFAULT'
         config = {'f': parser.get(d, 'from_lang'), 't': parser.get(d, 'to_lang')}
     except ImportError:
-        config = {'f': 'zh', 't': 'en'}
+        config = {}
     main(config)
