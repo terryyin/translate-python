@@ -3,7 +3,7 @@
 import codecs
 import os
 import re
-from setuptools import setup, Command
+from setuptools import find_packages, setup, Command
 
 
 here = os.path.abspath(os.path.dirname(__file__))
@@ -35,16 +35,21 @@ class VersionCommand(Command):
     def run(self):
         print(version)
 
+
+# Get the long description
 with codecs.open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
-    long_description = '\n{}'.format(f.read())
+    long_description = f.read()
 
+# Get version
 with codecs.open(os.path.join(here, 'CHANGES.rst'), encoding='utf-8') as f:
-    changes = f.read()
-    long_description += '\n\nChangelog:\n----------\n\n{}'.format(changes)
-
+    changelog = f.read()
 
 # Requirements
-install_requirements = ['requests>=2.18.4']
+with codecs.open(os.path.join(here, 'requirements.txt')) as f:
+    install_requirements = [line.split('#')[0].strip() for line in f.readlines() if not line.startswith('#')]
+
+with codecs.open(os.path.join(here, 'requirements-dev.txt')) as f:
+    tests_requirements = [line.replace('\n', '') for line in f.readlines() if not line == '-r requirements.txt\n']
 
 setup(
     name='translate',
@@ -64,16 +69,15 @@ setup(
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.2',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4'
         'Programming Language :: Python :: 3.5'
         'Programming Language :: Python :: 3.6'
     ],
-    py_modules=['translate'],
     author='Terry Yin',
     author_email='terry.yinze@gmail.com',
+    packages=find_packages(exclude=['docs', 'tests', 'tests.*', 'requirements']),
+    setup_requires=['pytest-runner'],
     install_requires=install_requirements,
-    scripts=['translate'],
+    tests_require=tests_requirements,
+    scripts=['translate-cli'],
     cmdclass={'version': VersionCommand},
 )

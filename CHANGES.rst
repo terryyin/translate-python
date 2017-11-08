@@ -1,6 +1,15 @@
 Changelog
 ---------
 
+3.1.0
+-----
+
+* Apply Solid Principles
+* Organize Project
+* Add pre-commit, pytest
+* Add new Make file
+* Add new test cases
+
 3.0.0
 -----
 
