@@ -1,0 +1,46 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: ['Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/535.19                                       (KHTML,
+          like Gecko) Chrome/18.0.1025.168 Safari/535.19']
+    method: GET
+    uri: http://mymemory.translated.net/api/get?q=yes+or+no&langpair=en%7Czh
+  response:
+    body: {string: "\r\n{\"responseData\":{\"translatedText\":\"\\u662f\\u6216\\u5426\"\
+        ,\"match\":0.98},\"quotaFinished\":false,\"responseDetails\":\"\",\"responseStatus\"\
+        :200,\"responderId\":\"242\",\"matches\":[{\"id\":\"435653061\",\"segment\"\
+        :\"Yes or No\",\"translation\":\"\\u662f\\u6216\\u5426\",\"quality\":\"74\"\
+        ,\"reference\":null,\"usage-count\":7,\"subject\":\"All\",\"created-by\":\"\
+        MateCat\",\"last-updated-by\":\"MateCat\",\"create-date\":\"2016-02-18 08:05:45\"\
+        ,\"last-update-date\":\"2016-02-18 08:05:45\",\"match\":0.98},{\"id\":\"441163786\"\
+        ,\"segment\":\"`Yes&apos; or `No&apos;.\",\"translation\":\"\\\"\\u6709 \\\
+        \"\\u6216 \\\"\\u65e0 \\\"\\u3002\",\"quality\":\"0\",\"reference\":null,\"\
+        usage-count\":1,\"subject\":\"All\",\"created-by\":\"Public_Corpora\",\"last-updated-by\"\
+        :\"Public_Corpora\",\"create-date\":\"2016-12-04 00:09:51\",\"last-update-date\"\
+        :\"2016-12-04 00:09:51\",\"match\":0.89},{\"id\":\"431603540\",\"segment\"\
+        :\"All, Yes or No\",\"translation\":\"\\u6240\\u6709\\uff0c\\u662f\\u6216\\\
+        u5426\\u3002\",\"quality\":\"74\",\"reference\":null,\"usage-count\":6,\"\
+        subject\":\"All\",\"created-by\":\"MateCat\",\"last-updated-by\":\"MateCat\"\
+        ,\"create-date\":\"2014-11-20 09:13:45\",\"last-update-date\":\"2014-11-20\
+        \ 09:13:45\",\"match\":0.85}]}"}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Cache-Control: ['no-cache, no-store, max-age=0, must-revalidate']
+      Connection: [close]
+      Content-Length: ['1084']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Wed, 08 Nov 2017 13:04:50 GMT']
+      Expires: ['Fri, 01 Jan 1990 00:00:00 GMT']
+      Pragma: [no-cache]
+      Server: [Apache/2.4.10 (Debian)]
+      X-Backend-Content-Length: ['10']
+      X-Embedded-Status: ['200']
+      X-Frame-Options: [SAMEORIGIN]
+      X-Powered-By: [PHP/5.6.30-0+deb8u1]
+      X-XSS-Protection: ['0']
+    status: {code: 200, message: OK}
+version: 1
