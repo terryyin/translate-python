@@ -8,7 +8,7 @@
 #
 # The idea of this is borrowed from <mort.yao@gmail.com>'s brilliant work
 #    https://github.com/soimort/google-translate-cli
-# He uses "THE BEER-WARE LICENSE". That's why I use it too. So you can buy him a 
+# He uses "THE BEER-WARE LICENSE". That's why I use it too. So you can buy him a
 # beer too.
 # ----------------------------------------------------------------------------
 from unittest import TestCase
@@ -16,7 +16,8 @@ from subprocess import Popen, PIPE, check_output
 from translate import Translator
 import sys
 
-decode = [lambda x:x, lambda x:x.decode("utf-8")][sys.version_info.major>2] 
+decode = [lambda x:x, lambda x:x.decode("utf-8")][sys.version_info.major>2]
+
 
 class TestTranslate(TestCase):
 
@@ -24,12 +25,12 @@ class TestTranslate(TestCase):
         translator = Translator(to_lang="en")
         translation = translator.translate("why")
         self.assertEqual(u"why", translation)
-		
+
     def test_translate_english_to_Chinese(self):
         translator = Translator(to_lang="zh")
         translation = translator.translate("why")
         self.assertEqual(u"为什么这样说呢？",translation)
-		
+
     def test_translate_english_to_Chinese_Simple_sentence(self):
         translator = Translator(to_lang="zh")
         translation = translator.translate("why stop?")
@@ -45,20 +46,21 @@ class TestTranslate(TestCase):
         translation = translator.translate("yes. no.")
         self.assertIn(u'会 不会', translation)
 
+
 class CommandLineTest(TestCase):
     def test_command_line_take_zh_as_default_language(self):
         result = check_output("translate why".split())
         self.assertIn(u'为什么', result.decode("utf-8"))
-        
+
     def test_command_line_take_string_arg(self):
         result = check_output(["translate", 'This is a pen.'])
         self.assertIn(u'这是一支钢笔。', result.decode("utf-8").splitlines())
-        
+
     def test_command_line_take_multiple_args(self):
         result = check_output(["translate", 'one', 'two'])
         self.assertIn(u'一个', result.decode("utf-8").splitlines())
         self.assertIn(u'二个', result.decode("utf-8").splitlines())
-        
+
     def test_command_line_to_language(self):
         result = check_output(["translate", '--to', 'zh-TW', 'love'])
         self.assertIn(u'愛', result.decode("utf-8").splitlines())
