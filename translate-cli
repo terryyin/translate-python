@@ -8,21 +8,23 @@
 #
 # The idea of this is borrowed from <mort.yao@gmail.com>'s brilliant work
 #    https://github.com/soimort/google-translate-cli
-# He uses "THE BEER-WARE LICENSE". That's why I use it too. So you can buy him a 
+# He uses "THE BEER-WARE LICENSE". That's why I use it too. So you can buy him a
 # beer too.
 # ----------------------------------------------------------------------------
-from translate import main
+from translate.main import main
 
 if __name__ == "__main__":
     try:
-        import ConfigParser, os
+        import ConfigParser
+        import os
+
         parser = ConfigParser.SafeConfigParser({'from_lang': 'en', 'to_lang': 'zh'})
         fn = os.path.expanduser('~/.python-translate.cfg')
         if not parser.read(fn):
             with open(fn, 'wb') as configfile:
                 parser.write(configfile)
         d = 'DEFAULT'
-        config = {'f': parser.get(d,'from_lang'), 't':parser.get(d,'to_lang') }
+        config = {'f': parser.get(d, 'from_lang'), 't': parser.get(d, 'to_lang')}
     except ImportError:
-      config = {'f': 'zh', 't':'en' }
+        config = {}
     main(config)

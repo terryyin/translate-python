@@ -1,0 +1,40 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: ['Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/535.19                                       (KHTML,
+          like Gecko) Chrome/18.0.1025.168 Safari/535.19']
+    method: GET
+    uri: http://mymemory.translated.net/api/get?q=%E7%BE%8E&langpair=ja%7Czh
+  response:
+    body: {string: "\r\n{\"responseData\":{\"translatedText\":\"\\u7f8e\",\"match\"\
+        :1},\"quotaFinished\":false,\"responseDetails\":\"\",\"responseStatus\":200,\"\
+        responderId\":\"242\",\"matches\":[{\"id\":\"424114345\",\"segment\":\"\\\
+        u7f8e\",\"translation\":\"\\u7f8e\",\"quality\":\"80\",\"reference\":null,\"\
+        usage-count\":1,\"subject\":\"All\",\"created-by\":\"Wikipedia\",\"last-updated-by\"\
+        :\"Wikipedia\",\"create-date\":\"2014-03-08 05:00:13\",\"last-update-date\"\
+        :\"2014-03-08 05:00:13\",\"match\":1},{\"id\":\"424069911\",\"segment\":\"\
+        \\u7f8e\",\"translation\":\"\\u7f8e\\u9e97\",\"quality\":null,\"reference\"\
+        :null,\"usage-count\":1,\"subject\":\"All\",\"created-by\":\"Wikipedia\",\"\
+        last-updated-by\":\"Wikipedia\",\"create-date\":\"2011-06-04 20:52:06\",\"\
+        last-update-date\":\"2011-06-04 20:52:06\",\"match\":0.99}]}"}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Cache-Control: ['no-cache, no-store, max-age=0, must-revalidate']
+      Connection: [close]
+      Content-Length: ['695']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Wed, 08 Nov 2017 16:23:16 GMT']
+      Expires: ['Fri, 01 Jan 1990 00:00:00 GMT']
+      Pragma: [no-cache]
+      Server: [Apache/2.4.10 (Debian)]
+      X-Backend-Content-Length: ['10']
+      X-Embedded-Status: ['200']
+      X-Frame-Options: [SAMEORIGIN]
+      X-Powered-By: [PHP/5.6.30-0+deb8u1]
+      X-XSS-Protection: ['0']
+    status: {code: 200, message: OK}
+version: 1

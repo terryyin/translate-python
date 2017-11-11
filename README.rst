@@ -34,13 +34,13 @@ In your command-line:
 
 ::
 
-   translate "This is a pen."
+   translate-cli "This is a pen."
 
 Or
 
 ::
 
-   translate -f zh -t ja 我是谁？
+   translate-cli -f zh -t ja 我是谁？
 
 Use As A Python Module
 ----------------------
