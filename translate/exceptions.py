@@ -1,0 +1,2 @@
+class InvalidProviderError(Exception):
+    pass

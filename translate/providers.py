@@ -15,14 +15,11 @@ class BaseProvider:
 
     base_url = ''
 
-    def __init__(self, to_lang, headers, from_lang='en', **kwargs):
+    def __init__(self, to_lang, headers, from_lang='en', secret_access_key=None, **kwargs):
         self.from_lang = from_lang
         self.to_lang = to_lang
         self.headers = headers
-
-    @abstractmethod
-    def _make_request(self, params):
-        return NotImplemented('Please Implement this method')
+        self.secret_access_key = secret_access_key
 
     @abstractmethod
     def get_translation(self, params):
