@@ -1,6 +1,11 @@
 Changelog
 ---------
 
+3.2.0
+-----
+
+* Add multiple providers suport
+
 3.1.0
 -----
 
