@@ -1,12 +1,33 @@
 #!/usr/bin/env python
 # encoding: utf-8
-from translate import Translator
 try:
     from unittest import mock
 except Exception:
     import mock
 
+import pytest
+
+from translate import Translator
+from translate.exceptions import InvalidProviderError
+from translate.providers import MyMemoryProvider
+
 from .vcr_conf import vcr
+
+
+def test_tranlate_with_invalid_provider():
+    class InvalidProvider:
+        attrib1 = ''
+        attrib2 = ''
+
+    with pytest.raises(InvalidProviderError) as error:
+        Translator(to_lang='en', provider_class=InvalidProvider)
+
+    assert str(error.value) == 'Provider class invalid. Please check providers list.'
+
+
+def test_tranlate_with_valid_provider():
+    translator = Translator(to_lang='en', provider_class=MyMemoryProvider)
+    assert isinstance(translator.provider, MyMemoryProvider)
 
 
 @vcr.use_cassette
