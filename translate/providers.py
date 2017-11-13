@@ -27,7 +27,15 @@ class BaseProvider:
 
 
 class MyMemoryProvider(BaseProvider):
-    base_url = 'http://mymemory.translated.net/api/get'
+    '''
+    @MyMemoryProvider: http://mymemory.translated.net
+    Usage: Use a valid email instead of the default.
+    With a valid email you get 10 times more words/day to translate.
+    For further infomations checkout:
+    http://mymemory.translated.net/doc/usagelimits.php
+    http://mymemory.translated.net/doc/spec.php  Tips from: @Bachstelze
+    '''
+    base_url = 'http://api.mymemory.translated.net/get'
 
     def __init__(self, **kwargs):
         try:
@@ -35,10 +43,14 @@ class MyMemoryProvider(BaseProvider):
         except TypeError:
             super(MyMemoryProvider, self).__init__(**kwargs)
 
+        self.email = kwargs.get('email', '')
         self.languages = '{}|{}'.format(self.from_lang, self.to_lang)
 
     def _make_request(self, text):
         params = {'q': text, 'langpair': self.languages}
+        if self.email:
+            params['email'] = self.email
+
         response = requests.get(self.base_url, params=params, headers=self.headers)
         return response.json()
 

@@ -17,7 +17,7 @@ TRANSLATION_API_MAX_LENGHT = 1000
 class Translator:
     default_provider = MyMemoryProvider
 
-    def __init__(self, to_lang, from_lang='en', provider_class=None, secret_access_key=None):
+    def __init__(self, to_lang, from_lang='en', provider_class=None, secret_access_key=None, **kwargs):
         self.from_lang = from_lang
         self.to_lang = to_lang
         headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/535.19\
@@ -31,7 +31,8 @@ class Translator:
             from_lang=from_lang,
             to_lang=to_lang,
             headers=headers,
-            secret_access_key=secret_access_key
+            secret_access_key=secret_access_key,
+            **kwargs
         )
 
     def translate(self, text):
