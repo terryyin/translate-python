@@ -30,6 +30,13 @@ def test_tranlate_with_valid_provider():
     assert isinstance(translator.provider, MyMemoryProvider)
 
 
+def test_tranlate_with_provider_extra_argument():
+    # Case from MyMemoryProvider extra argument
+    email = 'test@test.com'
+    translator = Translator(to_lang='en', email=email)
+    assert translator.provider.email == email
+
+
 @vcr.use_cassette
 def test_tranlate_english_to_english():
     translator = Translator(to_lang='en')
