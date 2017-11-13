@@ -5,22 +5,22 @@ interactions:
       Accept: ['*/*']
       Accept-Encoding: ['gzip, deflate']
       Connection: [keep-alive]
-      User-Agent: ['Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/535.19                                       (KHTML,
+      User-Agent: ['Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/535.19                                  (KHTML,
           like Gecko) Chrome/18.0.1025.168 Safari/535.19']
     method: GET
-    uri: http://mymemory.translated.net/api/get?q=What+is+%27yinyang%27%3F&langpair=en%7Czh
+    uri: http://api.mymemory.translated.net/get?q=What+is+%27yinyang%27%3F&langpair=en%7Czh
   response:
-    body: {string: "\r\n{\"responseData\":{\"translatedText\":\"\\u4ec0\\u4e48\\u662f\\\
-        u201c\\u9634\\u9633\\u201d\\uff1f\",\"match\":0.85},\"quotaFinished\":false,\"\
-        responseDetails\":\"\",\"responseStatus\":200,\"responderId\":\"239\",\"matches\"\
-        :[{\"id\":0,\"segment\":\"What is 'yinyang'?\",\"translation\":\"\\u4ec0\\\
-        u4e48\\u662f\\u201c\\u9634\\u9633\\u201d\\uff1f\",\"quality\":70,\"reference\"\
-        :\"Machine Translation provided by Google, Microsoft, Worldlingo or MyMemory\
-        \ customized engine.\",\"usage-count\":1,\"subject\":false,\"created-by\"\
-        :\"MT!\",\"last-updated-by\":\"MT!\",\"create-date\":\"2017-11-08 13:56:14\"\
-        ,\"last-update-date\":\"2017-11-08 13:56:14\",\"match\":0.85,\"model\":\"\
-        neural\"},{\"id\":\"434845981\",\"segment\":\"What is\",\"translation\":\"\
-        \\u4ec0\\u9ebc\\u662f\",\"quality\":\"74\",\"reference\":null,\"usage-count\"\
+    body: {string: !!python/unicode "\r\n{\"responseData\":{\"translatedText\":\"\\\
+        u4ec0\\u4e48\\u662f\\u201c\\u9634\\u9633\\u201d\\uff1f\",\"match\":0.85},\"\
+        quotaFinished\":false,\"responseDetails\":\"\",\"responseStatus\":200,\"responderId\"\
+        :\"238\",\"matches\":[{\"id\":0,\"segment\":\"What is 'yinyang'?\",\"translation\"\
+        :\"\\u4ec0\\u4e48\\u662f\\u201c\\u9634\\u9633\\u201d\\uff1f\",\"quality\"\
+        :70,\"reference\":\"Machine Translation provided by Google, Microsoft, Worldlingo\
+        \ or MyMemory customized engine.\",\"usage-count\":1,\"subject\":false,\"\
+        created-by\":\"MT!\",\"last-updated-by\":\"MT!\",\"create-date\":\"2017-11-13\
+        \ 14:29:26\",\"last-update-date\":\"2017-11-13 14:29:26\",\"match\":0.85,\"\
+        model\":\"neural\"},{\"id\":\"434845981\",\"segment\":\"What is\",\"translation\"\
+        :\"\\u4ec0\\u9ebc\\u662f\",\"quality\":\"74\",\"reference\":null,\"usage-count\"\
         :1,\"subject\":\"All\",\"created-by\":\"MateCat\",\"last-updated-by\":\"MateCat\"\
         ,\"create-date\":\"2015-10-06 08:40:17\",\"last-update-date\":\"2015-10-06\
         \ 08:40:17\",\"match\":0.63},{\"id\":\"437738398\",\"segment\":\"What is...\"\
@@ -29,19 +29,19 @@ interactions:
         :\"MateCat\",\"create-date\":\"2016-09-08 16:02:55\",\"last-update-date\"\
         :\"2016-09-08 16:02:55\",\"match\":0.62}]}"}
     headers:
-      Access-Control-Allow-Origin: ['*']
-      Cache-Control: ['no-cache, no-store, max-age=0, must-revalidate']
-      Connection: [close]
-      Content-Length: ['1163']
-      Content-Type: [application/json; charset=utf-8]
-      Date: ['Wed, 08 Nov 2017 12:56:14 GMT']
-      Expires: ['Fri, 01 Jan 1990 00:00:00 GMT']
-      Pragma: [no-cache]
-      Server: [Apache/2.4.10 (Debian)]
-      X-Backend-Content-Length: ['10']
-      X-Embedded-Status: ['200']
-      X-Frame-Options: [SAMEORIGIN]
-      X-Powered-By: [PHP/5.6.30-0+deb8u1]
-      X-XSS-Protection: ['0']
+      access-control-allow-origin: ['*']
+      cache-control: ['no-cache, no-store, max-age=0, must-revalidate']
+      connection: [close]
+      content-length: ['1163']
+      content-type: [application/json; charset=utf-8]
+      date: ['Mon, 13 Nov 2017 13:29:25 GMT']
+      expires: ['Fri, 01 Jan 1990 00:00:00 GMT']
+      pragma: [no-cache]
+      server: [Apache/2.4.10 (Debian)]
+      x-backend-content-length: ['10']
+      x-embedded-status: ['200']
+      x-frame-options: [SAMEORIGIN]
+      x-powered-by: [PHP/5.6.30-0+deb8u1]
+      x-xss-protection: ['0']
     status: {code: 200, message: OK}
 version: 1
