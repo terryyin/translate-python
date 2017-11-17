@@ -6,7 +6,7 @@ import re
 from setuptools import find_packages, setup, Command
 
 
-here = os.path.abspath(os.path.dirname(__file__))
+here = os.path.dirname(os.path.abspath(__file__))
 version = '0.0.0'
 description = (
     'This is a simple, yet powerful command line translator with google translate behind it. '
