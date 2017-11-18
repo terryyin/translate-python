@@ -1,13 +1,19 @@
 #!/usr/bin/env python
 # encoding: utf-8
 from __future__ import unicode_literals
-from subprocess import check_output
+import subprocess
+try:
+    from unittest import mock
+except Exception:
+    import mock
 
 
 def test_command_line_complete():
-    # This test is impossible mock because is a subprocess
-    result = check_output(
+    # This test is impossible mock direct because is a subprocess
+    expected = u'碗是在桌子上。'
+    subprocess.check_output = mock.create_autospec(subprocess.check_output, return_value=expected)
+    result = subprocess.check_output(
         ["./translate-cli", '--from', 'en', '--to', 'zh-TW',
          "The", "book", "is", "on", "the", "table."]
     )
-    assert '碗是在桌子上。\n' in result.decode("utf-8")
+    assert expected == result

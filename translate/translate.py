@@ -7,36 +7,37 @@
 # this stuff is worth it, you can buy me a beer in return to Terry Yin.
 from textwrap import wrap
 
-import requests
+from .exceptions import InvalidProviderError
+from .providers import MyMemoryProvider
 
 
 TRANSLATION_API_MAX_LENGHT = 1000
 
 
 class Translator:
-    def __init__(self, to_lang, from_lang='en'):
+    default_provider = MyMemoryProvider
+
+    def __init__(self, to_lang, from_lang='en', provider_class=None, secret_access_key=None, **kwargs):
         self.from_lang = from_lang
         self.to_lang = to_lang
-        self.base_url = 'http://mymemory.translated.net/api/get'
-        self.headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/535.19\
-                                       (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19'}
+        headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/535.19\
+                                  (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19'}
+        provider_class = provider_class or self.default_provider
 
-    def _get_translation(self, text):
-        languages = '{}|{}'.format(self.from_lang, self.to_lang)
-        params = {'q': text, 'langpair': languages}
-        response = requests.get(self.base_url, params=params, headers=self.headers)
-        data = response.json()
+        if not hasattr(provider_class, 'get_translation'):
+                raise InvalidProviderError('Provider class invalid. Please check providers list.')
 
-        translation = data['responseData']['translatedText']
-        if translation:
-            return translation
-        else:
-            matches = data['matches']
-            next_best_match = next(match for match in matches)
-            return next_best_match['translation']
+        self.provider = provider_class(
+            from_lang=from_lang,
+            to_lang=to_lang,
+            headers=headers,
+            secret_access_key=secret_access_key,
+            **kwargs
+        )
 
     def translate(self, text):
         if self.from_lang == self.to_lang:
             return text
+
         text_list = wrap(text, TRANSLATION_API_MAX_LENGHT, replace_whitespace=False)
-        return ' '.join(self._get_translation(text) for text in text_list)
+        return ' '.join(self.provider.get_translation(text_wraped) for text_wraped in text_list)
