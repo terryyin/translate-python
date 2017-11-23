@@ -1,6 +1,11 @@
 Changelog
 ---------
 
+3.2.1
+-----
+
+* Change the license from "BEER-WARE" to MIT
+
 3.2.0
 -----
 
