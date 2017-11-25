@@ -57,12 +57,13 @@ class VersionCommand(Command):
 
 
 # Get the long description
-with codecs.open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
-    long_description = f.read()
+with codecs.open(os.path.join(here, 'README.rst')) as f:
+    long_description = '\n{}'.format(f.read())
 
 # Get change log
-with codecs.open(os.path.join(here, 'CHANGES.rst'), encoding='utf-8') as f:
+with codecs.open(os.path.join(here, 'CHANGES.rst')) as f:
     changelog = f.read()
+    long_description += '\n\n{}'.format(changelog)
 
 # Requirements
 with codecs.open(os.path.join(here, 'requirements.txt')) as f:
@@ -79,13 +80,12 @@ setup(
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Education',
         'Intended Audience :: End Users/Desktop',
+        'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
-        'Operating System :: MacOS :: MacOS X',
-        'Operating System :: Microsoft :: Windows',
-        'Operating System :: POSIX',
+        'Operating System :: OS Independent',
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.5'
+        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python',
         'Topic :: Education',
     ],
@@ -96,6 +96,7 @@ setup(
         translate-cli=translate.__main__:cli
     ''',
     install_requires=install_requirements,
+    keywords='translate translation command line',
     license='MIT',
     long_description=long_description,
     name='translate',

@@ -38,4 +38,4 @@ Changelog
 2.0.0 (2017-11-08)
 ------------------
 
-* Current release
+* initial release using changes file
