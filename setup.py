@@ -77,6 +77,9 @@ setup(
     setup_requires=['pytest-runner'],
     install_requires=install_requirements,
     tests_require=tests_requirements,
-    scripts=['translate-cli'],
+    entry_points='''
+        [console_scripts]
+        translate-cli=translate.__main__:cli
+    ''',
     cmdclass={'version': VersionCommand},
 )

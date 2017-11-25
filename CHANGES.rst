@@ -1,6 +1,12 @@
 Changelog
 ---------
 
+3.3.0
+-----
+
+* Change argparser to click
+* Use a unify translate-cli
+
 3.2.0
 -----
 
