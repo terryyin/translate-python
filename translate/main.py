@@ -5,44 +5,69 @@
 # <terry.yinzhe@gmail.com> wrote this file. As long as you retain this notice you
 # can do whatever you want with this stuff. If we meet some day, and you think
 # this stuff is worth it, you can buy me a beer in return to Terry Yin.
-import argparse
-import sys
+import os
+import click
+try:
+    from configparser import ConfigParser
+except ImportError:
+    from ConfigParser import ConfigParser
 import locale
+import sys
 
 from .translate import Translator
 
 TRANSLATION_FROM_DEFAULT = 'en'
 TRANSLATION_TO_DEFAULT = 'zh'
-HELPER_LANGUAGES = '(e.g. en, ja, ko, pt, zh, zh-TW, ...)'
-TRANSLATION_CLIENT = 'translate-cli'
-MAIN_FILE = '__main__'
+CONFIG_FILE_PATH = '~/.python-translate.cfg'
 
 
-def main(defvals=None):
-    if not defvals:
-        defvals = {'f': TRANSLATION_FROM_DEFAULT, 't': TRANSLATION_TO_DEFAULT}
+def get_config_info():
+    config_file_path = os.path.expanduser(CONFIG_FILE_PATH)
 
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        '-t', '--to', dest='to_lang', type=str, default=defvals['t'],
-        help='To language {}. Default is {}.'.format(HELPER_LANGUAGES, defvals['t'])
-    )
-    parser.add_argument(
-        '-f', '--from', dest='from_lang', type=str, default=defvals['f'],
-        help='From language {}. Default is {}.'.format(HELPER_LANGUAGES, defvals['f'])
-    )
-    parser.add_argument(
-        'texts', metavar='text', nargs='+',
-        help='a string to translate(use "" when it\'s a sentence)'
-    )
+    if not os.path.exists(config_file_path):
+        return {
+            'from_lang': TRANSLATION_FROM_DEFAULT,
+            'to_lang': TRANSLATION_TO_DEFAULT
+        }
 
-    if TRANSLATION_CLIENT in sys.argv[0] or MAIN_FILE in sys.argv[0]:
-        sys.argv.pop(0)
+    config_parser = ConfigParser()
+    config_parser.read(config_file_path)
+    default_section = 'DEFAULT'
+    return {
+        'from_lang': config_parser.get(default_section, 'from_lang'),
+        'to_lang': config_parser.get(default_section, 'to_lang')
+    }
 
-    parsed_args = parser.parse_args(sys.argv)
 
-    translator = Translator(from_lang=parsed_args.from_lang, to_lang=parsed_args.to_lang)
-    text = ' '.join(parsed_args.texts)
+@click.command()
+@click.option(
+    'from_lang', '--from', '-f',
+    # default=TRANSLATION_FROM_DEFAULT,
+    help='Language to be translated.'
+)
+@click.option(
+    'to_lang', '--to', '-t',
+    # default=TRANSLATION_TO_DEFAULT,
+    help='Language to be translated.'
+)
+@click.argument('text', nargs=-1, type=click.STRING)
+def main(from_lang, to_lang, text):
+    config_info = get_config_info()
+    # if config_info:
+    #     not_default_from_condition = from_lang != TRANSLATION_FROM_DEFAULT
+    #     from_lang = from_lang if not_default_from_condition else config_info['from_lang']
+
+    #     not_default_to_condition = to_lang != TRANSLATION_FROM_DEFAULT
+    #     to_lang = to_lang if not_default_to_condition else config_info['to_lang']
+    from_lang = from_lang or config_info['from_lang']
+    to_lang = to_lang or config_info['to_lang']
+
+    if not text:
+        sys.exit('Type the text to translate')
+
+    text = ' '.join(text)
+    translator = Translator(from_lang=from_lang, to_lang=to_lang)
+
     translation = translator.translate(text)
     if sys.version_info.major == 2:
         translation = translation.encode(locale.getpreferredencoding())
