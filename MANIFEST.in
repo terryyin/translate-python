@@ -1,3 +1,4 @@
+include LICENSE
 include *.rst
 include *.txt
 recursive-include docs *.rst *.py *.png *.jpg *.dot Makefile
