@@ -14,6 +14,9 @@ from .translate import Translator
 
 TRANSLATION_FROM_DEFAULT = 'autodetect'
 CONFIG_FILE_PATH = '~/.python-translate.cfg'
+VERSION_FILE = 'VERSION.txt'
+
+here = os.path.dirname(os.path.abspath(__file__))
 
 
 def get_config_info(lang_type):
@@ -28,7 +31,24 @@ def get_config_info(lang_type):
     return config_parser.get(default_section, lang_type)
 
 
+def print_version(ctx, param, value):
+    if not value or ctx.resilient_parsing:
+        return
+
+    with open(os.path.join(here, VERSION_FILE)) as content_file:
+        version = content_file.read()
+
+    click.echo('translate, version {}'.format(version))
+    ctx.exit()
+
+
 @click.command()
+@click.option(
+    '--version', is_flag=True, callback=print_version,
+    expose_value=False,
+    is_eager=True,
+    help='Show the version and exit.'
+)
 @click.option(
     'from_lang', '--from', '-f',
     default=get_config_info('from_lang') or TRANSLATION_FROM_DEFAULT,

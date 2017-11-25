@@ -21,6 +21,11 @@ with codecs.open(changes, encoding='utf-8') as changes:
             version = match.group("version")
             break
 
+# Save last Version
+version_file = os.path.join(here, "translate/VERSION.txt")
+with open(version_file, 'w') as content_file:
+    content_file.write(version)
+
 
 class VersionCommand(Command):
     description = 'Show library version'
@@ -40,7 +45,7 @@ class VersionCommand(Command):
 with codecs.open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
-# Get version
+# Get change log
 with codecs.open(os.path.join(here, 'CHANGES.rst'), encoding='utf-8') as f:
     changelog = f.read()
 
