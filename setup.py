@@ -21,10 +21,25 @@ with codecs.open(changes, encoding='utf-8') as changes:
             version = match.group("version")
             break
 
+
 # Save last Version
-version_file = os.path.join(here, "translate/VERSION.txt")
-with open(version_file, 'w') as content_file:
-    content_file.write(version)
+def save_version():
+    version_path = os.path.join(here, "translate/version.py")
+
+    with open(version_path) as version_file_read:
+        content_file = version_file_read.read()
+
+    VSRE = r"^__version__ = ['\"]([^'\"]*)['\"]"
+    mo = re.search(VSRE, content_file, re.M)
+    current_version = mo.group(1)
+
+    content_file = content_file.replace(current_version, "{}".format(version))
+
+    with open(version_path, 'w') as version_file_write:
+        version_file_write.write(content_file)
+
+
+save_version()
 
 
 class VersionCommand(Command):

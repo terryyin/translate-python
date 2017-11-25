@@ -6,11 +6,12 @@ try:
     from configparser import ConfigParser
 except ImportError:
     from ConfigParser import ConfigParser
-
 import locale
 import sys
 
 from .translate import Translator
+from .version import __version__
+
 
 TRANSLATION_FROM_DEFAULT = 'autodetect'
 CONFIG_FILE_PATH = '~/.python-translate.cfg'
@@ -35,10 +36,7 @@ def print_version(ctx, param, value):
     if not value or ctx.resilient_parsing:
         return
 
-    with open(os.path.join(here, VERSION_FILE)) as content_file:
-        version = content_file.read()
-
-    click.echo('translate, version {}'.format(version))
+    click.echo('translate, version {}'.format(__version__))
     ctx.exit()
 
 
