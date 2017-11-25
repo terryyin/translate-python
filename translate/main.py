@@ -12,47 +12,45 @@ import sys
 
 from .translate import Translator
 
-TRANSLATION_FROM_DEFAULT = 'en'
-TRANSLATION_TO_DEFAULT = 'zh'
+TRANSLATION_FROM_DEFAULT = 'autodetect'
 CONFIG_FILE_PATH = '~/.python-translate.cfg'
 
 
-def get_config_info():
+def get_config_info(lang_type):
     config_file_path = os.path.expanduser(CONFIG_FILE_PATH)
-
-    if not os.path.exists(config_file_path):
-        return {
-            'from_lang': TRANSLATION_FROM_DEFAULT,
-            'to_lang': TRANSLATION_TO_DEFAULT
-        }
+    lang_types = ('from_lang', 'to_lang')
+    if not os.path.exists(config_file_path) or lang_type not in lang_types:
+        return ''
 
     config_parser = ConfigParser()
     config_parser.read(config_file_path)
     default_section = 'DEFAULT'
-    return {
-        'from_lang': config_parser.get(default_section, 'from_lang'),
-        'to_lang': config_parser.get(default_section, 'to_lang')
-    }
+    return config_parser.get(default_section, lang_type)
 
 
 @click.command()
 @click.option(
     'from_lang', '--from', '-f',
+    default=get_config_info('from_lang') or TRANSLATION_FROM_DEFAULT,
     help='Language to be translated.'
 )
 @click.option(
     'to_lang', '--to', '-t',
+    default=get_config_info('to_lang'),
+    prompt='Translate to',
     help='Language to be translated.'
 )
-@click.argument('text', nargs=-1, type=click.STRING)
+@click.argument('text', nargs=-1, type=click.STRING, required=True)
 def main(from_lang, to_lang, text):
-    config_info = get_config_info()
-    from_lang = from_lang or config_info['from_lang']
-    to_lang = to_lang or config_info['to_lang']
+    """
+    Python command line tool to make on line translations
 
-    if not text:
-        sys.exit('Type the text to translate')
+    Example: \n
+    \t $ translate-cli -t zh the book is on the table \n
+    \t 碗是在桌子上。
 
+    PS: The default 'from language' is autodetect
+    """
     text = ' '.join(text)
     translator = Translator(from_lang=from_lang, to_lang=to_lang)
 
