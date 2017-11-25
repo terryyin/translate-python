@@ -71,35 +71,37 @@ with codecs.open(os.path.join(here, 'requirements.txt')) as f:
 with codecs.open(os.path.join(here, 'requirements-dev.txt')) as f:
     tests_requirements = [line.replace('\n', '') for line in f.readlines() if not line == '-r requirements.txt\n']
 
+
 setup(
-    name='translate',
-    version=version,
-    description=description,
-    long_description=long_description,
-    url='https://github.com/terryyin/google-translate-python',
+    author='Terry Yin',
+    author_email='terry.yinze@gmail.com',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Education',
         'Intended Audience :: End Users/Desktop',
         'License :: OSI Approved :: MIT License',
-        'Operating System :: POSIX',
-        'Operating System :: Microsoft :: Windows',
         'Operating System :: MacOS :: MacOS X',
-        'Topic :: Education',
-        'Programming Language :: Python',
+        'Operating System :: Microsoft :: Windows',
+        'Operating System :: POSIX',
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.5'
+        'Programming Language :: Python',
+        'Topic :: Education',
     ],
-    author='Terry Yin',
-    author_email='terry.yinze@gmail.com',
-    packages=find_packages(exclude=['docs', 'tests', 'tests.*', 'requirements']),
-    setup_requires=['pytest-runner'],
-    install_requires=install_requirements,
-    tests_require=tests_requirements,
+    cmdclass={'version': VersionCommand},
+    description=description,
     entry_points='''
         [console_scripts]
         translate-cli=translate.__main__:cli
     ''',
-    cmdclass={'version': VersionCommand},
+    install_requires=install_requirements,
+    license='MIT',
+    long_description=long_description,
+    name='translate',
+    packages=find_packages(exclude=['docs', 'tests', 'tests.*', 'requirements']),
+    setup_requires=['pytest-runner'],
+    tests_require=tests_requirements,
+    url='https://github.com/terryyin/google-translate-python',
+    version=version,
 )
