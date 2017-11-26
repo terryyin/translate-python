@@ -50,13 +50,13 @@ def print_version(ctx, param, value):
 @click.option(
     'from_lang', '--from', '-f',
     default=get_config_info('from_lang') or TRANSLATION_FROM_DEFAULT,
-    help='Language to be translated.'
+    help="Language of the text being translated. The default value is 'autodetect'"
 )
 @click.option(
     'to_lang', '--to', '-t',
     default=get_config_info('to_lang'),
     prompt='Translate to',
-    help='Language to be translated.'
+    help='Language you want translate.'
 )
 @click.argument('text', nargs=-1, type=click.STRING, required=True)
 def main(from_lang, to_lang, text):
@@ -64,10 +64,14 @@ def main(from_lang, to_lang, text):
     Python command line tool to make on line translations
 
     Example: \n
-    \t $ translate-cli -t zh the book is on the table \n
+    \b
+    \t $ translate-cli -t zh the book is on the table
     \t 碗是在桌子上。
 
-    PS: The default 'from language' is autodetect
+    Available languages: \n
+    \b
+    \t https://en.wikipedia.org/wiki/ISO_639-1
+    \t Examples: (e.g. en, ja, ko, pt, zh, zh-TW, ...)
     """
     text = ' '.join(text)
     translator = Translator(from_lang=from_lang, to_lang=to_lang)
@@ -76,6 +80,6 @@ def main(from_lang, to_lang, text):
     if sys.version_info.major == 2:
         translation = translation.encode(locale.getpreferredencoding())
 
-    sys.stdout.write(translation)
-    sys.stdout.write("\n")
+    click.echo(translation)
+
     return translation
