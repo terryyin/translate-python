@@ -4,8 +4,12 @@ Changelog
 3.3.0
 -----
 
-* Change argparser to click
-* Use a unify translate-cli
+* Refactor translate-cli (command line interface) Using Click library instead of ArgParser
+* Unify translate-cli and main to avoid duplicate code
+* Add documentation to be used on helper commands on translate-cli
+* Remove unnecessary code
+* Refactor setup to complete information in the PKG-INFO used by PyPI
+
 
 3.2.1
 -----
