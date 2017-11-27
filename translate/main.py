@@ -50,13 +50,13 @@ def print_version(ctx, param, value):
 @click.option(
     'from_lang', '--from', '-f',
     default=get_config_info('from_lang') or TRANSLATION_FROM_DEFAULT,
-    help="Language of the text being translated. The default value is 'autodetect'"
+    help="Sets the language of the text being translated. The default value is 'autodetect'"
 )
 @click.option(
     'to_lang', '--to', '-t',
     default=get_config_info('to_lang'),
     prompt='Translate to',
-    help='Language you want translate.'
+    help='Sets the language you want to translate.'
 )
 @click.argument('text', nargs=-1, type=click.STRING, required=True)
 def main(from_lang, to_lang, text):
