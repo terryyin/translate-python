@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # encoding: utf-8
-import sys
+from __future__ import unicode_literals
 
 from translate.main import main
 
@@ -8,21 +8,18 @@ from .vcr_conf import vcr
 
 
 @vcr.use_cassette
-def test_main_take_zh_as_default_language():
-    sys.argv = ['hello', 'world']
-    result = main()
-    assert '你好，世界' == result
+def test_main_language_to_translate_required(cli_runner):
+    result = cli_runner.invoke(main, ['hello', 'world'], input='zh')
+    assert 'Translate to []: zh\n你好，世界\n' == result.output
 
 
 @vcr.use_cassette
-def test_main_to_language():
-    sys.argv = ['-t', 'zh-TW', 'love']
-    result = main()
-    assert '爱' == result
+def test_main_to_language(cli_runner):
+    result = cli_runner.invoke(main, ['-t', 'zh-TW', 'love'])
+    assert '爱\n' == result.output
 
 
 @vcr.use_cassette
-def test_main_from_language():
-    sys.argv = ['--from', 'ja', '美']
-    result = main()
-    assert '美' == result
+def test_main_from_language(cli_runner):
+    result = cli_runner.invoke(main, ['--from', 'ja', '--to', 'zh', '美'])
+    assert '美\n' == result.output

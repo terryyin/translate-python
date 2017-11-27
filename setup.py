@@ -22,6 +22,26 @@ with codecs.open(changes, encoding='utf-8') as changes:
             break
 
 
+# Save last Version
+def save_version():
+    version_path = os.path.join(here, "translate/version.py")
+
+    with open(version_path) as version_file_read:
+        content_file = version_file_read.read()
+
+    VSRE = r"^__version__ = ['\"]([^'\"]*)['\"]"
+    mo = re.search(VSRE, content_file, re.M)
+    current_version = mo.group(1)
+
+    content_file = content_file.replace(current_version, "{}".format(version))
+
+    with open(version_path, 'w') as version_file_write:
+        version_file_write.write(content_file)
+
+
+save_version()
+
+
 class VersionCommand(Command):
     description = 'Show library version'
     user_options = []
@@ -37,12 +57,13 @@ class VersionCommand(Command):
 
 
 # Get the long description
-with codecs.open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
-    long_description = f.read()
+with codecs.open(os.path.join(here, 'README.rst')) as f:
+    long_description = '\n{}'.format(f.read())
 
-# Get version
-with codecs.open(os.path.join(here, 'CHANGES.rst'), encoding='utf-8') as f:
+# Get change log
+with codecs.open(os.path.join(here, 'CHANGES.rst')) as f:
     changelog = f.read()
+    long_description += '\n\n{}'.format(changelog)
 
 # Requirements
 with codecs.open(os.path.join(here, 'requirements.txt')) as f:
@@ -51,32 +72,37 @@ with codecs.open(os.path.join(here, 'requirements.txt')) as f:
 with codecs.open(os.path.join(here, 'requirements-dev.txt')) as f:
     tests_requirements = [line.replace('\n', '') for line in f.readlines() if not line == '-r requirements.txt\n']
 
+
 setup(
-    name='translate',
-    version=version,
-    description=description,
-    long_description=long_description,
-    url='https://github.com/terryyin/google-translate-python',
+    author='Terry Yin',
+    author_email='terry.yinze@gmail.com',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Education',
         'Intended Audience :: End Users/Desktop',
+        'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
-        'Operating System :: POSIX',
-        'Operating System :: Microsoft :: Windows',
-        'Operating System :: MacOS :: MacOS X',
-        'Topic :: Education',
-        'Programming Language :: Python',
+        'Operating System :: OS Independent',
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.5'
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python',
+        'Topic :: Education',
     ],
-    author='Terry Yin',
-    author_email='terry.yinze@gmail.com',
+    cmdclass={'version': VersionCommand},
+    description=description,
+    entry_points='''
+        [console_scripts]
+        translate-cli=translate.__main__:cli
+    ''',
+    install_requires=install_requirements,
+    keywords='translate translation command line',
+    license='MIT',
+    long_description=long_description,
+    name='translate',
     packages=find_packages(exclude=['docs', 'tests', 'tests.*', 'requirements']),
     setup_requires=['pytest-runner'],
-    install_requires=install_requirements,
     tests_require=tests_requirements,
-    scripts=['translate-cli'],
-    cmdclass={'version': VersionCommand},
+    url='https://github.com/terryyin/google-translate-python',
+    version=version,
 )
