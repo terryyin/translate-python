@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # encoding: utf-8
 from __future__ import unicode_literals
+try:
+    from unittest import mock
+except Exception:
+    import mock
 
 from translate.main import main
 
@@ -23,3 +27,9 @@ def test_main_to_language(cli_runner):
 def test_main_from_language(cli_runner):
     result = cli_runner.invoke(main, ['--from', 'ja', '--to', 'zh', '美'])
     assert '美\n' == result.output
+
+
+@mock.patch('translate.main.__version__', '0.0.0')
+def test_main_get_vesion(cli_runner):
+    result = cli_runner.invoke(main, ['--version'])
+    assert 'translate, version 0.0.0\n' == result.output

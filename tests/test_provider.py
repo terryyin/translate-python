@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 # encoding: utf-8
-from translate.providers import MyMemoryProvider
+try:
+    from unittest import mock
+except Exception:
+    import mock
+
+from translate.providers import MyMemoryProvider, MicrosoftProvider
 
 
 def test_provider_mymemory_languages_attribute():
@@ -16,7 +21,27 @@ def test_provider_mymemory_default_email():
     assert provider.email == ''
 
 
-def test_provider_mymemory_valid_email():
+@mock.patch('requests.get')
+def test_provider_mymemory_make_request_with_valid_email(mock_requests):
+    mock_requests.return_value.json.return_value = {}
     valid_email = 'test@valid-email.com'
     provider = MyMemoryProvider(to_lang='en', headers={}, email=valid_email)
-    assert provider.email == valid_email
+    provider._make_request('test') == {}
+    assert mock_requests.call_args[1]['params']['de'] == valid_email == provider.email
+
+
+@mock.patch('requests.post')
+@mock.patch('requests.get')
+def test_provider_microsoft_make_request(mock_requests_get, mock_requests_post):
+    class MockRequests:
+        content = ''
+
+        def raise_for_status(self):
+            return False
+
+    mock_requests_get.return_value.json.return_value = {}
+    mock_requests_post.return_value = MockRequests()
+    provider = MicrosoftProvider(to_lang='en', headers={}, secret_access_key='secret')
+    provider._make_request('test')
+    assert mock_requests_get.called
+    assert mock_requests_post.called

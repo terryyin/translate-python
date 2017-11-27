@@ -15,18 +15,14 @@ from .vcr_conf import vcr
 
 
 def test_tranlate_with_invalid_provider():
-    class InvalidProvider:
-        attrib1 = ''
-        attrib2 = ''
-
     with pytest.raises(InvalidProviderError) as error:
-        Translator(to_lang='en', provider_class=InvalidProvider)
+        Translator(to_lang='en', provider='invalid_provider')
 
     assert str(error.value) == 'Provider class invalid. Please check providers list.'
 
 
 def test_tranlate_with_valid_provider():
-    translator = Translator(to_lang='en', provider_class=MyMemoryProvider)
+    translator = Translator(to_lang='en', provider='mymemory')
     assert isinstance(translator.provider, MyMemoryProvider)
 
 
