@@ -7,6 +7,7 @@ from lxml import etree
 import requests
 
 from .base import BaseProvider
+from ..constants import TRANSLATION_FROM_DEFAULT
 
 
 class AzureAuthClient:
@@ -44,7 +45,7 @@ class AzureAuthClient:
             self.token = response.content
             self.reuse_token_until = datetime.utcnow() + timedelta(minutes=5)
 
-        return self.token
+        return self.token.decode('utf-8')
 
 
 class MicrosoftProvider(BaseProvider):
@@ -58,11 +59,14 @@ class MicrosoftProvider(BaseProvider):
     def _make_request(self, text):
         auth_client = AzureAuthClient(self.secret_access_key)
         access_token = 'Bearer {}'.format(auth_client.get_access_token())
-
         self.headers.update({"Authorization ": access_token})
 
-        params = {'text': text, 'from': self.from_lang, 'to': self.to_lang}
+        params = {'text': text, 'to': self.to_lang}
+        if self.from_lang != TRANSLATION_FROM_DEFAULT:
+            params['from'] = self.from_lang
+
         response = requests.get(self.base_url, params=params, headers=self.headers)
+
         return response.text
 
     def get_translation(self, text):

@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # encoding: utf-8
-
 from textwrap import wrap
 
 from .exceptions import InvalidProviderError
