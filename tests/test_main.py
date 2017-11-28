@@ -10,23 +10,30 @@ from translate.main import main
 
 from .vcr_conf import vcr
 
+response_template = (
+    '\nTranslation: {}\n'
+    '-------------------------\n'
+    'Translated by: MyMemory\n'
+)
+
 
 @vcr.use_cassette
 def test_main_language_to_translate_required(cli_runner):
     result = cli_runner.invoke(main, ['hello', 'world'], input='zh')
-    assert 'Translate to []: zh\n你好，世界\n' == result.output
+    response = response_template.format('你好，世界')
+    assert 'Translate to [zh]: zh\n{}'.format(response) == result.output
 
 
 @vcr.use_cassette
 def test_main_to_language(cli_runner):
     result = cli_runner.invoke(main, ['-t', 'zh-TW', 'love'])
-    assert '爱\n' == result.output
+    assert response_template.format('爱') == result.output
 
 
 @vcr.use_cassette
 def test_main_from_language(cli_runner):
     result = cli_runner.invoke(main, ['--from', 'ja', '--to', 'zh', '美'])
-    assert '美\n' == result.output
+    assert response_template.format('美') == result.output
 
 
 @mock.patch('translate.main.__version__', '0.0.0')
