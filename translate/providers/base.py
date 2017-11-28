@@ -7,6 +7,7 @@ from abc import ABCMeta, abstractmethod
 class BaseProvider:
     __metaclass__ = ABCMeta
 
+    name = ''
     base_url = ''
 
     def __init__(self, to_lang, from_lang='en', secret_access_key=None, **kwargs):

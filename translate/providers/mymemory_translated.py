@@ -18,6 +18,7 @@ class MyMemoryProvider(BaseProvider):
     http://mymemory.translated.net/doc/usagelimits.php
                                                     Tips from: @Bachstelze
     '''
+    name = 'MyMemory'
     base_url = 'http://api.mymemory.translated.net/get'
 
     def __init__(self, **kwargs):

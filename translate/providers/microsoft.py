@@ -54,6 +54,7 @@ class MicrosoftProvider(BaseProvider):
     Website: http://docs.microsofttranslator.com
     Documentation: http://docs.microsofttranslator.com/text-translate.html
     '''
+    name = 'Microsoft'
     base_url = 'http://api.microsofttranslator.com/v2/Http.svc/Translate'
 
     def _make_request(self, text):
