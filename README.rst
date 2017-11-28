@@ -67,6 +67,20 @@ In ~/.python-translate.cfg:
 The cfg is not for using as a Python module.
 The country code, as far as I know, is following https://en.wikipedia.org/wiki/ISO_639-1.
 
+
+Use a different translation provider
+-----------------------------------
+
+::
+    from translate import Translator
+    from translate.providers import MicrosoftProvider
+    from_lang = 'en'
+    secret = '<your secret from Microsoft>'
+    translator = Translator(provider=MicrosoftProvider, from_lang=from_lang, to_lang=to_lang, secret_access_key=secret)
+    translator.translate('the book is on the table')
+
+    > '碗是在桌子上。'
+
 Contribution
 -----------------------
 
