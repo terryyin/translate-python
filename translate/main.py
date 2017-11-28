@@ -60,7 +60,7 @@ def print_version(ctx, param, value):
 @click.option(
     'provider', '--provider', '-p',
     default=DEFAULT_PROVIDER,
-    help="The providers name you wish to use. The default value is '{}'".format(DEFAULT_PROVIDER)
+    help="Set the provider you want to use. The default value is '{}'".format(DEFAULT_PROVIDER)
 )
 @click.option(
     'secret_access_key', '--secret_access_key',
@@ -74,13 +74,13 @@ def main(from_lang, to_lang, provider, secret_access_key, text):
 
     \b
     Example:
-
+    \b
     \t $ translate-cli -t zh the book is on the table
     \t 碗是在桌子上。
 
     \b
     Available languages:
-
+    \b
     \t https://en.wikipedia.org/wiki/ISO_639-1
     \t Examples: (e.g. en, ja, ko, pt, zh, zh-TW, ...)
     """
