@@ -1,3 +1,4 @@
+=======================
 google-translate-python
 =======================
 
@@ -7,7 +8,7 @@ usage. Please let me know if there's any other better free translation API.
 
 The default from language is English (en).
 The default to language is Simplified Chinese (zh). Of course, you can specify it
-in the parameter or commandline.
+in the parameter or command line.
 
 利用google
 translate实现的命令行工具（translate），也可以当做Python模块用在你的代码中。
@@ -40,7 +41,8 @@ Or
 
 ::
 
-   translate-cli -f zh -t ja 我是谁？
+   translate-cli -f zh -t ja
+   我是谁？
 
 Use As A Python Module
 ----------------------
@@ -54,35 +56,37 @@ Use As A Python Module
 The result is in translation, and it’s usually a unicode string.
 
 Change Default Languages
-----------------------
+------------------------
 
 In ~/.python-translate.cfg:
 
 ::
 
    [DEFAULT]
-   from_lang = auto
-   to_lang = 'de'
+   from_lang = autodetect
+   to_lang = de
+   provider = mymemory
+   secret_access_key =
 
 The cfg is not for using as a Python module.
 The country code, as far as I know, is following https://en.wikipedia.org/wiki/ISO_639-1.
 
 
 Use a different translation provider
------------------------------------
+------------------------------------
 
 ::
+
     from translate import Translator
-    from translate.providers import MicrosoftProvider
-    from_lang = 'en'
+    to_lang = 'en'
     secret = '<your secret from Microsoft>'
-    translator = Translator(provider=MicrosoftProvider, from_lang=from_lang, to_lang=to_lang, secret_access_key=secret)
+    translator = Translator(provider='microsoft', to_lang=to_lang, secret_access_key=secret)
     translator.translate('the book is on the table')
 
     > '碗是在桌子上。'
 
 Contribution
------------------------
+------------
 
 Please send pull requests, very much appriciated.
 
