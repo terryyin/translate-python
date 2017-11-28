@@ -126,8 +126,15 @@ def config_file(ctx, from_lang, to_lang, provider, secret_access_key):
     help="Set the secret access key used to get provider oAuth token",
     required=False,
 )
+@click.option(
+    'output_only', '--output_only', '-o',
+    default=False,
+    is_flag=True,
+    help="Display the translation only",
+    required=False,
+)
 @click.argument('text', nargs=-1, type=click.STRING, required=True)
-def main(from_lang, to_lang, provider, secret_access_key, text):
+def main(from_lang, to_lang, provider, secret_access_key, output_only, text):
     """
     Python command line tool to make on line translations
 
@@ -153,6 +160,10 @@ def main(from_lang, to_lang, provider, secret_access_key, text):
     translation = translator.translate(text)
     if sys.version_info.major == 2:
         translation = translation.encode(locale.getpreferredencoding())
+
+    if output_only:
+        click.echo(translation)
+        return translation
 
     click.echo('\nTranslation: {}'.format(translation))
     click.echo('-' * 25)

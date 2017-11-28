@@ -31,6 +31,12 @@ def test_main_to_language(cli_runner):
 
 
 @vcr.use_cassette
+def test_main_to_language_output_only(cli_runner):
+    result = cli_runner.invoke(main, ['-t', 'zh-TW', '-o', 'love'])
+    assert '爱\n' == result.output
+
+
+@vcr.use_cassette
 def test_main_from_language(cli_runner):
     result = cli_runner.invoke(main, ['--from', 'ja', '--to', 'zh', '美'])
     assert response_template.format('美') == result.output
