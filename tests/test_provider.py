@@ -34,12 +34,12 @@ def test_provider_mymemory_make_request_with_valid_email(mock_requests):
 @mock.patch('requests.get')
 def test_provider_microsoft_make_request(mock_requests_get, mock_requests_post):
     class MockRequests:
-        content = ''
+        content = b'token'
 
         def raise_for_status(self):
             return False
 
-    mock_requests_get.return_value.json.return_value = {}
+    mock_requests_get.return_value.text.return_value = ''
     mock_requests_post.return_value = MockRequests()
     provider = MicrosoftProvider(to_lang='en', headers={}, secret_access_key='secret')
     provider._make_request('test')
