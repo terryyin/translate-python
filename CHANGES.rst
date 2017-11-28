@@ -1,6 +1,12 @@
 Changelog
 ---------
 
+3.4.1
+-----
+
+* Makefile: Add a make release command
+* Add twine to dev requirements.
+
 3.4.0
 -----
 

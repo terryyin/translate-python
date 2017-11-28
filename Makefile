@@ -17,16 +17,26 @@ clean-build:
 lint:
 	pre-commit run -av
 
-dev:
+pip-install:
 	pip install -r requirements-dev.txt
 
-test: dev
+pip-upgrade:
+	pip install --upgrade -r requirements-dev.txt
+
+cov:
+	coverage report -m
+
+cov-report:
+	py.test -vv --cov-report=html tests
+
+test: pip-install
 	py.test -vv -s
 
 build: test
 	python setup.py sdist
 	python setup.py bdist_wheel
 
-
-pip-install:
-	pip install --upgrade -r requirements-dev.txt
+release: build
+	git tag `python setup.py -q version`
+	git push origin `python setup.py -q version`
+	twine upload dist/*
