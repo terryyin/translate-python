@@ -5,4 +5,5 @@ ipython
 pre-commit
 pytest
 pytest-cov
+tox
 vcrpy

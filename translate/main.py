@@ -11,11 +11,8 @@ import sys
 
 from .translate import Translator
 from .version import __version__
+from .constants import CONFIG_FILE_PATH, DEFAULT_PROVIDER, TRANSLATION_FROM_DEFAULT
 
-
-TRANSLATION_FROM_DEFAULT = 'autodetect'
-CONFIG_FILE_PATH = '~/.python-translate.cfg'
-VERSION_FILE = 'VERSION.txt'
 
 here = os.path.dirname(os.path.abspath(__file__))
 
@@ -42,40 +39,58 @@ def print_version(ctx, param, value):
 
 @click.command()
 @click.option(
-    '--version', is_flag=True, callback=print_version,
+    '--version',
+    callback=print_version,
     expose_value=False,
+    is_flag=True,
     is_eager=True,
     help='Show the version and exit.'
 )
 @click.option(
     'from_lang', '--from', '-f',
     default=get_config_info('from_lang') or TRANSLATION_FROM_DEFAULT,
-    help="Language of the text being translated. The default value is 'autodetect'"
+    help="Sets the language of the text being translated. The default value is 'autodetect'"
 )
 @click.option(
     'to_lang', '--to', '-t',
     default=get_config_info('to_lang'),
     prompt='Translate to',
-    help='Language you want translate.'
+    help='Sets the language you want to translate.'
+)
+@click.option(
+    'provider', '--provider', '-p',
+    default=DEFAULT_PROVIDER,
+    help="The providers name you wish to use. The default value is '{}'".format(DEFAULT_PROVIDER)
+)
+@click.option(
+    'secret_access_key', '--secret_access_key',
+    help="Set the secret access key used to get provider oAuth token",
+    required=False,
 )
 @click.argument('text', nargs=-1, type=click.STRING, required=True)
-def main(from_lang, to_lang, text):
+def main(from_lang, to_lang, provider, secret_access_key, text):
     """
     Python command line tool to make on line translations
 
-    Example: \n
     \b
+    Example:
+
     \t $ translate-cli -t zh the book is on the table
     \t 碗是在桌子上。
 
-    Available languages: \n
     \b
+    Available languages:
+
     \t https://en.wikipedia.org/wiki/ISO_639-1
     \t Examples: (e.g. en, ja, ko, pt, zh, zh-TW, ...)
     """
     text = ' '.join(text)
-    translator = Translator(from_lang=from_lang, to_lang=to_lang)
 
+    kwargs = dict(from_lang=from_lang, to_lang=to_lang, provider=provider)
+    if provider != DEFAULT_PROVIDER:
+        kwargs['secret_access_key'] = secret_access_key
+
+    translator = Translator(**kwargs)
     translation = translator.translate(text)
     if sys.version_info.major == 2:
         translation = translation.encode(locale.getpreferredencoding())

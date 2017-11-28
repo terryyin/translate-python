@@ -27,17 +27,6 @@ build: test
 	python setup.py sdist
 	python setup.py bdist_wheel
 
-${VIRTUAL_ENV}/bin/pip-sync:
-	pip install pip-tools
 
-pip-tools: ${VIRTUAL_ENV}/bin/pip-sync
-
-pip-compile: pip-tools
-	@rm -r requirements.txt
-	pip-compile requirements.in
-
-pip-install: pip-compile
+pip-install:
 	pip install --upgrade -r requirements-dev.txt
-
-pip-upgrade: pip-tools
-	pip-compile --upgrade requirements.in

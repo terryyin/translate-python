@@ -1,6 +1,15 @@
 Changelog
 ---------
 
+3.4.0
+-----
+
+* Refactor: Create a folder to add all providers instead to let in a single file
+* Add Microsoft provider
+* Add more documentation to all providers (Translated-MyMemory and Microsoft Translator)
+* Add arguments to change the default provider using translate-cli
+
+
 3.3.0
 -----
 

@@ -1,32 +1,35 @@
 #!/usr/bin/env python
 # encoding: utf-8
-
 from textwrap import wrap
 
 from .exceptions import InvalidProviderError
-from .providers import MyMemoryProvider
+from .providers import MyMemoryProvider, MicrosoftProvider
 
-
+DEFAULT_PROVIDER = MyMemoryProvider
 TRANSLATION_API_MAX_LENGHT = 1000
+
+PROVIDERS_CLASS = {
+    'mymemory': MyMemoryProvider,
+    'microsoft': MicrosoftProvider
+}
 
 
 class Translator:
-    default_provider = MyMemoryProvider
-
-    def __init__(self, to_lang, from_lang='en', provider_class=None, secret_access_key=None, **kwargs):
+    def __init__(self, to_lang, from_lang='en', provider=None, secret_access_key=None, **kwargs):
+        self.available_providers = list(PROVIDERS_CLASS.keys())
         self.from_lang = from_lang
         self.to_lang = to_lang
-        headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/535.19\
-                                  (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19'}
-        provider_class = provider_class or self.default_provider
+        if provider and provider not in self.available_providers:
+            raise InvalidProviderError(
+                'Provider class invalid. '
+                'Please check providers list bellow: {!r}'.format(self.available_providers)
+            )
 
-        if not hasattr(provider_class, 'get_translation'):
-                raise InvalidProviderError('Provider class invalid. Please check providers list.')
+        provider_class = PROVIDERS_CLASS.get(provider, DEFAULT_PROVIDER)
 
         self.provider = provider_class(
             from_lang=from_lang,
             to_lang=to_lang,
-            headers=headers,
             secret_access_key=secret_access_key,
             **kwargs
         )
