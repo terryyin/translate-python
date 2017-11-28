@@ -16,42 +16,80 @@ translate实现的命令行工具（translate），也可以当做Python模块�
 Installation
 ------------
 
-::
+.. code-block:: bash
 
-   pip install translate
+   $ pip install translate
 
 Or, you can download the source and
 
-::
+.. code-block:: bash
 
-   python setup.py install
+   $ python setup.py install
 
 Add sudo in the beginning if you met problem.
 
-Command-Line Usage
-------------------
+Usage
+-----
 
 In your command-line:
 
-::
+.. code-block:: bash
 
-   translate-cli "This is a pen."
+   $ translate-cli "This is a pen."
+
+   Translation: O livro esta em cima da mesa
+   -------------------------
+   Translated by: MyMemory
 
 Or
 
-::
+.. code-block:: bash
 
-   translate-cli -f zh -t ja
+   $ translate-cli -f zh -t ja -o
    我是谁？
+
+Options
+~~~~~~~
+
+.. code-block:: bash
+
+    $ translate-cli --help
+    Usage: __main__.py [OPTIONS] TEXT...
+
+      Python command line tool to make on line translations
+
+      Example:
+
+           $ translate-cli -t zh the book is on the table
+           碗是在桌子上。
+
+      Available languages:
+
+           https://en.wikipedia.org/wiki/ISO_639-1
+           Examples: (e.g. en, ja, ko, pt, zh, zh-TW, ...)
+
+    Options:
+      --version                 Show the version and exit.
+      --generate-config-file    Generated the config file using a Wizard and exit.
+      -f, --from TEXT           Sets the language of the text being translated.
+                                The default value is 'autodetect'.
+      -t, --to TEXT             Sets the language you want to translate.
+      -p, --provider TEXT       Set the provider you want to use. The default
+                                value is 'mymemory'.
+      --secret_access_key TEXT  Set the secret access key used to get provider
+                                oAuth token.
+      -o, --output_only         Set to display the translation only.
+      --help                    Show this message and exit.
 
 Use As A Python Module
 ----------------------
 
-::
+.. code-block:: python
 
-   from translate import Translator
-   translator= Translator(to_lang="zh")
-   translation = translator.translate("This is a pen.")
+   In [1]: from translate import Translator
+   In [2]: translator= Translator(to_lang="zh")
+   In [3]: translation = translator.translate("This is a pen.")
+   Out [3]: 这是一支笔
 
 The result is in translation, and it’s usually a unicode string.
 
@@ -60,7 +98,7 @@ Change Default Languages
 
 In ~/.python-translate.cfg:
 
-::
+.. code-block:: bash
 
    [DEFAULT]
    from_lang = autodetect
@@ -75,15 +113,14 @@ The country code, as far as I know, is following https://en.wikipedia.org/wiki/I
 Use a different translation provider
 ------------------------------------
 
-::
+.. code-block:: python
 
-    from translate import Translator
-    to_lang = 'en'
-    secret = '<your secret from Microsoft>'
-    translator = Translator(provider='microsoft', to_lang=to_lang, secret_access_key=secret)
-    translator.translate('the book is on the table')
-
-    > '碗是在桌子上。'
+    In [1]: from translate import Translator
+    In [2]: to_lang = 'zh'
+    In [3]: secret = '<your secret from Microsoft>'
+    In [4]: translator = Translator(provider='microsoft', to_lang=to_lang, secret_access_key=secret)
+    In [5]: translator.translate('the book is on the table')
+    Out [5]: '碗是在桌子上。'
 
 Contribution
 ------------
