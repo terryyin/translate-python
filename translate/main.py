@@ -107,7 +107,7 @@ def config_file(ctx, from_lang, to_lang, provider, secret_access_key):
 @click.option(
     'from_lang', '--from', '-f',
     default=get_config_info('from_lang') or TRANSLATION_FROM_DEFAULT,
-    help="Sets the language of the text being translated. The default value is 'autodetect'"
+    help="Sets the language of the text being translated. The default value is 'autodetect'."
 )
 @click.option(
     'to_lang', '--to', '-t',
@@ -118,19 +118,19 @@ def config_file(ctx, from_lang, to_lang, provider, secret_access_key):
 @click.option(
     'provider', '--provider', '-p',
     default=get_config_info('provider') or DEFAULT_PROVIDER,
-    help="Set the provider you want to use. The default value is '{}'".format(DEFAULT_PROVIDER)
+    help="Set the provider you want to use. The default value is '{}'.".format(DEFAULT_PROVIDER)
 )
 @click.option(
     'secret_access_key', '--secret_access_key',
     default=get_config_info('secret_access_key'),
-    help="Set the secret access key used to get provider oAuth token",
+    help="Set the secret access key used to get provider oAuth token.",
     required=False,
 )
 @click.option(
     'output_only', '--output_only', '-o',
     default=False,
     is_flag=True,
-    help="Display the translation only",
+    help="Set to display the translation only.",
     required=False,
 )
 @click.argument('text', nargs=-1, type=click.STRING, required=True)
