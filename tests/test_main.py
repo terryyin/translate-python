@@ -21,7 +21,7 @@ response_template = (
 def test_main_language_to_translate_required(cli_runner):
     result = cli_runner.invoke(main, ['hello', 'world'], input='zh')
     response = response_template.format('你好，世界')
-    assert 'Translate to [zh]: zh\n{}'.format(response) == result.output
+    assert 'Translate to []: zh\n{}'.format(response) == result.output
 
 
 @vcr.use_cassette
