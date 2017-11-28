@@ -17,16 +17,30 @@ from .constants import CONFIG_FILE_PATH, DEFAULT_PROVIDER, TRANSLATION_FROM_DEFA
 here = os.path.dirname(os.path.abspath(__file__))
 
 
-def get_config_info(lang_type):
+def get_config_info(option):
     config_file_path = os.path.expanduser(CONFIG_FILE_PATH)
-    lang_types = ('from_lang', 'to_lang')
-    if not os.path.exists(config_file_path) or lang_type not in lang_types:
+    options = ('from_lang', 'to_lang', 'provider', 'secret_access_key')
+    if not os.path.exists(config_file_path) or option not in options:
         return ''
 
     config_parser = ConfigParser()
     config_parser.read(config_file_path)
     default_section = 'DEFAULT'
-    return config_parser.get(default_section, lang_type)
+    return config_parser.get(default_section, option)
+
+
+def generate_config(ctx, param, value):
+    if not value or ctx.resilient_parsing:
+        return
+
+    config_file_path = os.path.expanduser(CONFIG_FILE_PATH)
+    if os.path.exists(config_file_path):
+        click.echo('The config already generated.')
+        ctx.exit()
+
+    ctx.invoke(config_file({}))
+    click.echo('The config file was generated in {}'.format(CONFIG_FILE_PATH))
+    ctx.exit()
 
 
 def print_version(ctx, param, value):
@@ -39,8 +53,56 @@ def print_version(ctx, param, value):
 
 @click.command()
 @click.option(
+    'from_lang', '-f',
+    default=TRANSLATION_FROM_DEFAULT,
+    prompt='Translate from',
+    help="Sets the default language of the text being translated. The default value is 'autodetect'"
+)
+@click.option(
+    'to_lang', '-t',
+    prompt='Translate to',
+    help='Sets the default language you want to translate.'
+)
+@click.option(
+    'provider', '-p',
+    default=DEFAULT_PROVIDER,
+    prompt='Provider',
+    help="Set the default provider you want to use. The default value is '{}'".format(DEFAULT_PROVIDER)
+)
+@click.option(
+    'secret_access_key', '-s',
+    default="",
+    prompt='Secret Access Key',
+    help="Set the secret access key used to get provider oAuth token",
+    required=False
+)
+@click.pass_context
+def config_file(ctx, from_lang, to_lang, provider, secret_access_key):
+    config_content = (
+        '[DEFAULT]\n'
+        'from_lang = {}\n'
+        'to_lang = {}\n'
+        'provider = {}\n'
+        'secret_access_key = {}\n'
+    )
+    content = config_content.format(from_lang, to_lang, provider, secret_access_key)
+    config_file_path = os.path.expanduser(CONFIG_FILE_PATH)
+    with open(config_file_path, 'w') as config_file:
+        config_file.write(content)
+
+
+@click.command()
+@click.option(
     '--version',
     callback=print_version,
+    expose_value=False,
+    is_flag=True,
+    is_eager=True,
+    help='Show the version and exit.'
+)
+@click.option(
+    '--generate-config-file',
+    callback=generate_config,
     expose_value=False,
     is_flag=True,
     is_eager=True,
@@ -59,11 +121,12 @@ def print_version(ctx, param, value):
 )
 @click.option(
     'provider', '--provider', '-p',
-    default=DEFAULT_PROVIDER,
-    help="The providers name you wish to use. The default value is '{}'".format(DEFAULT_PROVIDER)
+    default=get_config_info('provider') or DEFAULT_PROVIDER,
+    help="Set the provider you want to use. The default value is '{}'".format(DEFAULT_PROVIDER)
 )
 @click.option(
     'secret_access_key', '--secret_access_key',
+    default=get_config_info('secret_access_key'),
     help="Set the secret access key used to get provider oAuth token",
     required=False,
 )
@@ -74,13 +137,13 @@ def main(from_lang, to_lang, provider, secret_access_key, text):
 
     \b
     Example:
-
+    \b
     \t $ translate-cli -t zh the book is on the table
     \t 碗是在桌子上。
 
     \b
     Available languages:
-
+    \b
     \t https://en.wikipedia.org/wiki/ISO_639-1
     \t Examples: (e.g. en, ja, ko, pt, zh, zh-TW, ...)
     """
