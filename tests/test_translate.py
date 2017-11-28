@@ -18,7 +18,7 @@ def test_tranlate_with_invalid_provider():
     with pytest.raises(InvalidProviderError) as error:
         Translator(to_lang='en', provider='invalid_provider')
 
-    assert str(error.value) == 'Provider class invalid. Please check providers list.'
+    assert 'Provider class invalid. Please check providers list bellow:' in str(error.value)
 
 
 def test_tranlate_with_valid_provider():
