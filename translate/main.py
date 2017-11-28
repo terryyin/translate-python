@@ -154,6 +154,8 @@ def main(from_lang, to_lang, provider, secret_access_key, text):
     if sys.version_info.major == 2:
         translation = translation.encode(locale.getpreferredencoding())
 
-    click.echo(translation)
+    click.echo('\nTranslation: {}'.format(translation))
+    click.echo('-' * 25)
+    click.echo('Translated by: {}'.format(translator.provider.name))
 
     return translation
