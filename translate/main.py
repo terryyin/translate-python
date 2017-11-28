@@ -56,24 +56,20 @@ def print_version(ctx, param, value):
     'from_lang', '-f',
     default=TRANSLATION_FROM_DEFAULT,
     prompt='Translate from',
-    help="Sets the default language of the text being translated. The default value is 'autodetect'"
 )
 @click.option(
     'to_lang', '-t',
     prompt='Translate to',
-    help='Sets the default language you want to translate.'
 )
 @click.option(
     'provider', '-p',
     default=DEFAULT_PROVIDER,
     prompt='Provider',
-    help="Set the default provider you want to use. The default value is '{}'".format(DEFAULT_PROVIDER)
 )
 @click.option(
     'secret_access_key', '-s',
     default="",
     prompt='Secret Access Key',
-    help="Set the secret access key used to get provider oAuth token",
     required=False
 )
 @click.pass_context
@@ -106,7 +102,7 @@ def config_file(ctx, from_lang, to_lang, provider, secret_access_key):
     expose_value=False,
     is_flag=True,
     is_eager=True,
-    help='Show the version and exit.'
+    help='Generated the config file using a Wizard and exit.'
 )
 @click.option(
     'from_lang', '--from', '-f',
