@@ -139,7 +139,7 @@ Use a different translation provider
 Documentation
 ~~~~~~~~~~~~~
 
-Check out the latest ``translate`` documentation at `Read the Docs` website. (In contruction)
+Check out the latest ``translate`` documentation at `Read the Docs <http://translate-python.readthedocs.io/en/latest/>`_
 
 
 Contributing
