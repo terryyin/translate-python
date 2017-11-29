@@ -2,10 +2,8 @@
 Translate Tool in Python
 ========================
 
-.. image:: https://api.travis-ci.org/terryyin/translate-python.png?branch=master
-    :target: https://travis-ci.org/terryyin/translate-python
-.. image:: https://badge.fury.io/py/translate.svg
-    :target: https://badge.fury.io/py/translate
+|PyPI latest| |PyPI Version| |PyPI License| |Docs| |Travis Build Status|
+
 
 Translate is a simple but powerful translation tool written in python with with support for
 multiple translation providers. By now we are integrated with Microsoft Translation API and
@@ -165,3 +163,17 @@ Please send pull requests, very much appriciated.
 4. Install pre-commit. ``pre-commit install``
 5. Run the tests with ``py.test -vv -s``
 6. Create a Pull Request with your contribution
+
+
+
+.. |Docs| image:: https://readthedocs.org/projects/translate-python/badge/?version=latest
+   :target: http://translate-python.readthedocs.org/en/latest/?badge=latest
+.. |Travis Build Status| image:: https://api.travis-ci.org/terryyin/translate-python.png?branch=master
+   :target: https://travis-ci.org/terryyin/translate-python
+.. |PyPI Version| image:: https://img.shields.io/pypi/pyversions/translate.svg?maxAge=2592000
+   :target: https://pypi.python.org/pypi/translate
+.. |PyPI License| image:: https://img.shields.io/pypi/l/translate.svg?maxAge=2592000
+   :target: https://pypi.python.org/pypi/translate
+.. |PyPI latest| image:: https://img.shields.io/pypi/v/translate.svg?maxAge=2592000
+   :target: https://pypi.python.org/pypi/translate
+
