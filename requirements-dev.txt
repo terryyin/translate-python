@@ -2,9 +2,11 @@
 coveralls
 ipdb
 ipython
-pre-commit
 pytest
 pytest-cov
-tox
+Sphinx
+sphinx-autobuild
+sphinx-rtd-theme
 twine
 vcrpy
+wheel
