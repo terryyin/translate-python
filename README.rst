@@ -2,8 +2,8 @@
 Translate Tool in Python
 ========================
 
-.. image:: https://api.travis-ci.org/terryyin/google-translate-python.png?branch=master
-    :target: https://travis-ci.org/terryyin/google-translate-python
+.. image:: https://api.travis-ci.org/terryyin/translate-python.png?branch=master
+    :target: https://travis-ci.org/terryyin/translate-python
 .. image:: https://badge.fury.io/py/translate.svg
     :target: https://badge.fury.io/py/translate
 
@@ -48,9 +48,9 @@ In your command-line:
 
 .. code-block:: bash
 
-   $ translate-cli "This is a pen."
+   $ translate-cli -t zh "This is a pen."
 
-   Translation: O livro esta em cima da mesa
+   Translation: 这是一支笔
    -------------------------
    Translated by: MyMemory
 
@@ -58,8 +58,8 @@ Or
 
 .. code-block:: bash
 
-   $ translate-cli -f zh -t ja -o
-   我是谁？
+   $ translate-cli -t zh "This is a pen." -o
+   这是一支笔
 
 Options
 ~~~~~~~
@@ -94,20 +94,9 @@ Options
       -o, --output_only         Set to display the translation only.
       --help                    Show this message and exit.
 
-Use As A Python Module
-----------------------
-
-.. code-block:: python
-
-   In [1]: from translate import Translator
-   In [2]: translator= Translator(to_lang="zh")
-   In [3]: translation = translator.translate("This is a pen.")
-   Out [3]: 这是一支笔
-
-The result is in translation, and it’s usually a unicode string.
 
 Change Default Languages
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 In ~/.python-translate.cfg:
 
@@ -120,11 +109,33 @@ In ~/.python-translate.cfg:
    secret_access_key =
 
 The cfg is not for using as a Python module.
-The country code, as far as I know, is following https://en.wikipedia.org/wiki/ISO_639-1.
+
+or run the command line and follow the steps:
+
+.. code-block:: bash
+
+    $ translate-cli --generate-config-file
+    Translate from [autodetect]:
+    Translate to: <language you want to translate>
+    Provider [mymemory]:
+    Secret Access Key []:
+
+
+Use As A Python Module
+----------------------
+
+.. code-block:: python
+
+   In [1]: from translate import Translator
+   In [2]: translator= Translator(to_lang="zh")
+   In [3]: translation = translator.translate("This is a pen.")
+   Out [3]: 这是一支笔
+
+The result is in translation, and it’s usually a unicode string.
 
 
 Use a different translation provider
-------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: python
 
@@ -137,9 +148,9 @@ Use a different translation provider
 
 
 Documentation
-~~~~~~~~~~~~~
+-------------
 
-Check out the latest ``translate`` documentation at `Read the Docs` website. (In contruction)
+Check out the latest ``translate`` documentation at `Read the Docs <http://translate-python.readthedocs.io/en/latest/>`_
 
 
 Contributing

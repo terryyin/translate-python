@@ -1,11 +1,11 @@
 Providers
----------
+=========
 
 Providers are responsible to translate the text
 
 
 MicrosoftProvider
-~~~~~~~~~~~~~~~~~
+-----------------
 
 It is a paid provider but it is possible you can create a free account tends a quota of up to 2m of words per day
 
@@ -24,7 +24,7 @@ for further information abount the provider:
 
 
 MyMemory
-~~~~~~~~
+--------
 
 Is a free provider but very  complete
 
