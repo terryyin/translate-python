@@ -47,3 +47,10 @@ Other
     :maxdepth: 2
 
     changelog.rst
+
+Downloads
+---------
+
+- `PDF <https://readthedocs.org/projects/translate-python/downloads/pdf/latest/>`_
+
+- `Epub <https://readthedocs.org/projects/translate-python/downloads/epub/latest/>`_
