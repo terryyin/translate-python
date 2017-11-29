@@ -2,8 +2,8 @@
 Translate Tool in Python
 ========================
 
-.. image:: https://api.travis-ci.org/terryyin/google-translate-python.png?branch=master
-    :target: https://travis-ci.org/terryyin/google-translate-python
+.. image:: https://api.travis-ci.org/terryyin/translate-python.png?branch=master
+    :target: https://travis-ci.org/terryyin/translate-python
 .. image:: https://badge.fury.io/py/translate.svg
     :target: https://badge.fury.io/py/translate
 
