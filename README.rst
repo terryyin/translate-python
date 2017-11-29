@@ -2,6 +2,14 @@
 Translate Tool in Python
 =======================
 
+.. image:: https://api.travis-ci.org/terryyin/google-translate-python.png?branch=master
+    :target: https://travis-ci.org/terryyin/google-translate-python
+.. image:: https://badge.fury.io/py/translate.svg
+    :target: https://badge.fury.io/py/translate
+
+
+|
+
 Now google has stop providing free translation API. So I have to switch to
 http://mymemory.translated.net/, which has a limit for 1000 words/day free
 usage (5000 if you register an email). There's also other prodivers can be
