@@ -7,13 +7,16 @@ Translate Tool in Python
 .. image:: https://badge.fury.io/py/translate.svg
     :target: https://badge.fury.io/py/translate
 
-Translate is a simple but powerful translation tool written in python with with support for multiple translation providers. By now we are integrated with Microsoft Translation API and Translated MyMemory API
+Translate is a simple but powerful translation tool written in python with with support for
+multiple translation providers. By now we are integrated with Microsoft Translation API and
+Translated MyMemory API
 
 
 Why Should I Use This?
 ----------------------
 
-The biggest reason to use translate is make translations in a simple way without the need of much effort and can be used as a translation tool like command line
+The biggest reason to use translate is make translations in a simple way without the need of much
+effort and can be used as a translation tool like command line
 
 
 Installation
