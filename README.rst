@@ -1,15 +1,20 @@
-=======================
+========================
 Translate Tool in Python
-=======================
+========================
 
-Now google has stop providing free translation API. So I have to switch to
-http://mymemory.translated.net/, which has a limit for 1000 words/day free
-usage (5000 if you register an email). There's also other prodivers can be
-choosed from. Please let me know if there's any other better free translation API than we already have.
+.. image:: https://api.travis-ci.org/terryyin/google-translate-python.png?branch=master
+    :target: https://travis-ci.org/terryyin/google-translate-python
+.. image:: https://badge.fury.io/py/translate.svg
+    :target: https://badge.fury.io/py/translate
 
-The default from language is English (en).
-The default to language is Simplified Chinese (zh). Of course, you can specify it
-in the parameter or command line.
+Translate is a simple but powerful translation tool written in python with with support for multiple translation providers. By now we are integrated with Microsoft Translation API and Translated MyMemory API
+
+
+Why Should I Use This?
+----------------------
+
+The biggest reason to use translate is make translations in a simple way without the need of much effort and can be used as a translation tool like command line
+
 
 Installation
 ------------
@@ -25,6 +30,13 @@ Or, you can download the source and
    $ python setup.py install
 
 Add sudo in the beginning if you met problem.
+
+
+Features
+--------
+
+ - Translate your outputs in real time
+ - Do translation in your terminal using command line
 
 Usage
 -----
@@ -120,9 +132,22 @@ Use a different translation provider
     In [5]: translator.translate('the book is on the table')
     Out [5]: '碗是在桌子上。'
 
-Contribution
+
+Documentation
+~~~~~~~~~~~~~
+
+Check out the latest ``translate`` documentation at `Read the Docs` website. (In contruction)
+
+
+Contributing
 ------------
 
 Please send pull requests, very much appriciated.
 
-If you find an incorrect translation, one thing you can do is to create an account at http://mymemory.translated.net/ and fix their data.
+
+1. Fork the `repository <https://github.com/terryyin/translate-python>`_ on GitHub.
+2. Make a branch off of master and commit your changes to it.
+3. Install requirements. ``pip install -r requirements-dev.txt``
+4. Install pre-commit. ``pre-commit install``
+5. Run the tests with ``py.test -vv -s``
+6. Create a Pull Request with your contribution
