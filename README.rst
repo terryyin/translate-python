@@ -48,9 +48,9 @@ In your command-line:
 
 .. code-block:: bash
 
-   $ translate-cli "This is a pen."
+   $ translate-cli -t zh "This is a pen."
 
-   Translation: O livro esta em cima da mesa
+   Translation: 这是一支笔
    -------------------------
    Translated by: MyMemory
 
@@ -58,8 +58,8 @@ Or
 
 .. code-block:: bash
 
-   $ translate-cli -f zh -t ja -o
-   我是谁？
+   $ translate-cli -t zh "This is a pen." -o
+   这是一支笔
 
 Options
 ~~~~~~~
