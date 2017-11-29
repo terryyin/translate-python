@@ -36,8 +36,8 @@ Add sudo in the beginning if you met problem.
 Features
 --------
 
- - Translate your outputs in real time
- - Do translation in your terminal using command line
+- Translate your outputs in real time
+- Do translation in your terminal using command line
 
 Usage
 -----
