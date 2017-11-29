@@ -1,17 +1,15 @@
 =======================
-google-translate-python
+Translate Tool in Python
 =======================
 
 Now google has stop providing free translation API. So I have to switch to
 http://mymemory.translated.net/, which has a limit for 1000 words/day free
-usage. Please let me know if there's any other better free translation API.
+usage (5000 if you register an email). There's also other prodivers can be
+choosed from. Please let me know if there's any other better free translation API than we already have.
 
 The default from language is English (en).
 The default to language is Simplified Chinese (zh). Of course, you can specify it
 in the parameter or command line.
-
-利用google
-translate实现的命令行工具（translate），也可以当做Python模块用在你的代码中。
 
 Installation
 ------------
