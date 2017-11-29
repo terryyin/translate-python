@@ -1,3 +1,5 @@
 click
 lxml
+pre-commit
 requests
+tox

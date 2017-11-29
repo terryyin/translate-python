@@ -1,6 +1,12 @@
 Changelog
 ---------
 
+3.5.0
+-----
+
+* Add sphinx documentation
+* Update readme.
+
 3.4.1
 -----
 
