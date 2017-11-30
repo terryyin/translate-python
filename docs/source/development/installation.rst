@@ -10,7 +10,9 @@ Python 2.x, 3.x
 Development install
 -------------------
 
-After forking or checking out::
+After forking or checking out:
+
+.. code-block:: bash
 
     $ cd translate-python/
     $ pip install -r requirements-dev.txt
@@ -25,15 +27,21 @@ The official entrypoint for distritubution is the ``requirements.txt`` which
 contains the minimum requirements to execute the tests.
 
 
-Running tests::
+Running tests:
+
+.. code-block:: bash
 
     $ make test
 
-or::
+or:
+
+.. code-block:: bash
 
     $ py.test -vv -s
 
-Generating documentation::
+Generating documentation:
+
+.. code-block:: bash
 
     $ cd docs/
     $ make html
