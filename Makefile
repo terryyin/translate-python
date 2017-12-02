@@ -25,6 +25,7 @@ pip-upgrade:
 
 cov:
 	coverage report -m
+	codecov --token=485a9f45-2294-40d1-bc09-0675629d418f
 
 cov-report:
 	py.test -vv --cov-report=html tests

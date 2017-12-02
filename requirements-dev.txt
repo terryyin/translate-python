@@ -10,3 +10,4 @@ sphinx-rtd-theme
 twine
 vcrpy
 wheel
+codecov
