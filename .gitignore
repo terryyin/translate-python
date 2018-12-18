@@ -65,3 +65,4 @@ target/
 # environment
 .env
 .venv
+.idea

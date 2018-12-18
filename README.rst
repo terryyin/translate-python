@@ -173,7 +173,6 @@ Please send pull requests, very much appriciated.
 .. |PyPI Version| image:: https://img.shields.io/pypi/pyversions/translate.svg?maxAge=2592000
    :target: https://pypi.python.org/pypi/translate
 .. |PyPI License| image:: https://img.shields.io/pypi/l/translate.svg?maxAge=2592000
-   :target: https://pypi.python.org/pypi/translate
+   :target: https://github.com/terryyin/translate-python/blob/master/LICENSE
 .. |PyPI latest| image:: https://img.shields.io/pypi/v/translate.svg?maxAge=360
    :target: https://pypi.python.org/pypi/translate
-
