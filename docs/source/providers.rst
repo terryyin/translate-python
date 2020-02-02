@@ -30,7 +30,7 @@ Is a free provider but very  complete
 
 ``MyMemory`` (located at ``translate.providers``) receives the following options:
 
-to_lang, from_lang='en', secret_access_key
+to_lang, from_lang='en', email
 
     * ``to_lang``: language you want to translate
     * ``from_lang``: Language of the text being translated  (optional): as default ``autodetect``
