@@ -13,8 +13,8 @@ Translated MyMemory API
 Why Should I Use This?
 ----------------------
 
-The biggest reason to use translate is make translations in a simple way without the need of much
-effort and can be used as a translation tool like command line
+The biggest reason to use translate is to  make translations in a simple way without the need of bigger
+effort and can be used as a translation tool like command line 
 
 
 Installation
