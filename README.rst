@@ -13,7 +13,7 @@ Translated MyMemory API
 Why Should I Use This?
 ----------------------
 
-The biggest reason to use Translate is to make translating quick and easy. It can be used as a command linne translation tool
+The biggest reason to use Translate is to make translating quick and easy. It can be used as a command line translation tool or as a Python module.
 
 
 Installation
