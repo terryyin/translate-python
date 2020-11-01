@@ -22,7 +22,7 @@ class Translator:
         if provider and provider not in self.available_providers:
             raise InvalidProviderError(
                 'Provider class invalid. '
-                'Please check providers list bellow: {!r}'.format(self.available_providers)
+                'Please check providers list below: {!r}'.format(self.available_providers)
             )
 
         provider_class = PROVIDERS_CLASS.get(provider, DEFAULT_PROVIDER)
