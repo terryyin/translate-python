@@ -8,6 +8,7 @@ import json
 
 from .base import BaseProvider
 from ..constants import TRANSLATION_FROM_DEFAULT
+from ..exceptions import TranslationError
 
 class MicrosoftProvider(BaseProvider):
     '''
@@ -20,7 +21,8 @@ class MicrosoftProvider(BaseProvider):
 
     def _make_request(self, text):
         self.headers.update({"Ocp-Apim-Subscription-Key": self.secret_access_key})
-        self.headers.update({"Ocp-Apim-Subscription-Region": "westeurope"})
+        if self.region is not None:
+            self.headers.update({"Ocp-Apim-Subscription-Region": "westeurope"})
 
         params = {
                 'to': self.to_lang,
@@ -40,5 +42,8 @@ class MicrosoftProvider(BaseProvider):
 
     def get_translation(self, text):
         data = self._make_request(text)
+
+        if "error" in data:
+            raise TranslationError(data["error"]["message"])
 
         return data[0]["translations"][0]["text"]

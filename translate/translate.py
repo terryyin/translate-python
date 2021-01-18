@@ -15,7 +15,7 @@ PROVIDERS_CLASS = {
 
 
 class Translator:
-    def __init__(self, to_lang, from_lang='en', provider=None, secret_access_key=None, **kwargs):
+    def __init__(self, to_lang, from_lang='en', provider=None, secret_access_key=None, region=None, **kwargs):
         self.available_providers = list(PROVIDERS_CLASS.keys())
         self.from_lang = from_lang
         self.to_lang = to_lang
@@ -31,6 +31,7 @@ class Translator:
             from_lang=from_lang,
             to_lang=to_lang,
             secret_access_key=secret_access_key,
+            region=region,
             **kwargs
         )
 
