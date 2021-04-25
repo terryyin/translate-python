@@ -3,14 +3,15 @@
 from textwrap import wrap
 
 from .exceptions import InvalidProviderError
-from .providers import MyMemoryProvider, MicrosoftProvider
+from .providers import MyMemoryProvider, MicrosoftProvider, DeeplProvider
 
 DEFAULT_PROVIDER = MyMemoryProvider
 TRANSLATION_API_MAX_LENGHT = 1000
 
 PROVIDERS_CLASS = {
     'mymemory': MyMemoryProvider,
-    'microsoft': MicrosoftProvider
+    'microsoft': MicrosoftProvider,
+    'deepl': DeeplProvider
 }
 
 
