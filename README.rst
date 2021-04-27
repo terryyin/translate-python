@@ -6,7 +6,7 @@ Translate Tool in Python
 
 
 Translate is a simple but powerful translation tool written in python with with support for
-multiple translation providers. By now we are integrated with Microsoft Translation API and
+multiple translation providers. By now we offer integration with Microsoft Translation API and
 Translated MyMemory API
 
 
@@ -15,6 +15,7 @@ Why Should I Use This?
 
 The biggest reason to use translate is to  make translations in a simple way without the need of bigger
 effort and can be used as a translation tool like command line 
+
 
 
 Installation
@@ -30,14 +31,14 @@ Or, you can download the source and
 
    $ python setup.py install
 
-Add sudo in the beginning if you met problem.
+Prefix 'sudo' if you encounter a problem.
 
 
 Features
 --------
 
-- Translate your outputs in real time
-- Do translation in your terminal using command line
+- Translate your output in real time
+- Do translation in your terminal using the command line
 
 Usage
 -----
@@ -67,7 +68,7 @@ Options
     $ translate-cli --help
     Usage: __main__.py [OPTIONS] TEXT...
 
-      Python command line tool to make on line translations
+      Python command line tool to make online translations
 
       Example:
 
@@ -81,10 +82,10 @@ Options
 
     Options:
       --version                 Show the version and exit.
-      --generate-config-file    Generated the config file using a Wizard and exit.
+      --generate-config-file    Generate the config file using a Wizard and exit.
       -f, --from TEXT           Sets the language of the text being translated.
                                 The default value is 'autodetect'.
-      -t, --to TEXT             Sets the language you want to translate.
+      -t, --to TEXT             Set the language you want to translate.
       -p, --provider TEXT       Set the provider you want to use. The default
                                 value is 'mymemory'.
       --secret_access_key TEXT  Set the secret access key used to get provider
@@ -106,7 +107,7 @@ In ~/.python-translate.cfg:
    provider = mymemory
    secret_access_key =
 
-The cfg is not for using as a Python module.
+The cfg is not for use as a Python module.
 
 or run the command line and follow the steps:
 
@@ -129,7 +130,7 @@ Use As A Python Module
    In [3]: translation = translator.translate("This is a pen.")
    Out [3]: 这是一支笔
 
-The result is in translation, and it’s usually a unicode string.
+The result is usually a unicode string.
 
 
 Use a different translation provider
@@ -154,7 +155,7 @@ Check out the latest ``translate`` documentation at `Read the Docs <http://trans
 Contributing
 ------------
 
-Please send pull requests, very much appriciated.
+Please send pull requests, very much appreciated.
 
 
 1. Fork the `repository <https://github.com/terryyin/translate-python>`_ on GitHub.
