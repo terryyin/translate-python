@@ -6,8 +6,8 @@ Translate Tool in Python
 
 
 Translate is a simple but powerful translation tool written in python with with support for
-multiple translation providers. By now we offer integration with Microsoft Translation API and
-Translated MyMemory API
+multiple translation providers. By now we offer integration with Microsoft Translation API,
+Translated MyMemory API and DeepL's Free API
 
 
 Why Should I Use This?
@@ -138,7 +138,7 @@ Use a different translation provider
 
     In [1]: from translate import Translator
     In [2]: to_lang = 'zh'
-    In [3]: secret = '<your secret from Microsoft>'
+    In [3]: secret = '<your secret from Microsoft or DeepL>'
     In [4]: translator = Translator(provider='microsoft', to_lang=to_lang, secret_access_key=secret)
     In [5]: translator.translate('the book is on the table')
     Out [5]: '碗是在桌子上。'
