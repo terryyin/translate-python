@@ -150,7 +150,8 @@ The DeepL Provider
 To use DeepL's pro API, pass an additional parameter called pro to the Translator object and set it to True and use your pro authentication key as the secret_access_key
 
 .. code-block:: python
-    In [4]: translator = Translator(provider='microsoft', to_lang=to_lang, secret_access_key=secret, pro=True)
+
+    In: translator = Translator(provider='microsoft', to_lang=to_lang, secret_access_key=secret, pro=True)
 
 Documentation
 -------------
