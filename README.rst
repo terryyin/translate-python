@@ -13,7 +13,9 @@ Translated MyMemory API and DeepL's Free API
 Why Should I Use This?
 ----------------------
 
-The biggest reason to use Translate is to make translating quick and easy. It can be used as a command line translation tool or as a Python module.
+The biggest reason to use translate is to  make translations in a simple way without the need of bigger
+effort and can be used as a translation tool like command line 
+
 
 
 Installation
