@@ -15,7 +15,16 @@ class DeeplProvider(BaseProvider):
     Documentation: https://www.deepl.com/docs-api
     '''
     name = 'Deepl'
-    base_url = 'https://api-free.deepl.com/v2/translate'
+    base_free_url = 'https://api-free.deepl.com/v2/translate'
+    base_pro_url = 'https://api.deepl.com/v2/translate'
+
+    def __init__(self, **kwargs):
+        try:
+            super().__init__(**kwargs)
+        except TypeError:
+            super(DeeplProvider, self).__init__(**kwargs)
+        self.pro = self.kwargs.get('pro', False)
+        self.base_url = self.base_pro_url if self.pro else self.base_free_url
 
     def _make_request(self, text):
         params = {

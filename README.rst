@@ -139,10 +139,16 @@ Use a different translation provider
     In [1]: from translate import Translator
     In [2]: to_lang = 'zh'
     In [3]: secret = '<your secret from Microsoft or DeepL>'
-    In [4]: translator = Translator(provider='microsoft', to_lang=to_lang, secret_access_key=secret)
+    In [4]: translator = Translator(provider='<the name of the provider, eg. microsoft or deepl>', to_lang=to_lang, secret_access_key=secret)
     In [5]: translator.translate('the book is on the table')
     Out [5]: '碗是在桌子上。'
 
+The DeepL Provider
+~~~~~~~~~~~~~~~~~~
+To use DeepL's pro API, pass an additional parameter called pro to the Translator object and set it to True and use your pro authentication key as the secret_access_key
+
+.. code-block:: python
+    In [4]: translator = Translator(provider='microsoft', to_lang=to_lang, secret_access_key=secret, pro=True)
 
 Documentation
 -------------
