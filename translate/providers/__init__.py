@@ -4,5 +4,6 @@
 from .mymemory_translated import MyMemoryProvider  # noqa
 from .microsoft import MicrosoftProvider  # noqa
 from .deepl import DeeplProvider  # noqa
+from .libre import LibreProvider
 
-__all__ = ['MyMemoryProvider', 'MicrosoftProvider', 'DeeplProvider']
+__all__ = ['MyMemoryProvider', 'MicrosoftProvider', 'DeeplProvider', 'LibreProvider']
