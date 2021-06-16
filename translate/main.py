@@ -133,8 +133,15 @@ def config_file(ctx, from_lang, to_lang, provider, secret_access_key):
     help="Set to display the translation only.",
     required=False,
 )
+@click.option(
+    'pro', '--pro',
+    default=False,
+    is_flag=True,
+    help="Set to use DeepL's pro API.",
+    required=False,
+)
 @click.argument('text', nargs=-1, type=click.STRING, required=True)
-def main(from_lang, to_lang, provider, secret_access_key, output_only, text):
+def main(from_lang, to_lang, provider, secret_access_key, output_only, pro, text):
     """
     Python command line tool to make on line translations
 
@@ -155,6 +162,7 @@ def main(from_lang, to_lang, provider, secret_access_key, output_only, text):
     kwargs = dict(from_lang=from_lang, to_lang=to_lang, provider=provider)
     if provider != DEFAULT_PROVIDER:
         kwargs['secret_access_key'] = secret_access_key
+        kwargs['pro'] = pro
 
     translator = Translator(**kwargs)
     translation = translator.translate(text)
