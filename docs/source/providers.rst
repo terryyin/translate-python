@@ -40,3 +40,22 @@ for further information abount the provider:
 
     https://mymemory.translated.net/doc/spec.php
     http://mymemory.translated.net/doc/usagelimits.php
+
+LibreTranslate
+--------
+
+Free and open source translation provider
+
+``LibreTranslate`` (located at ``translate.providers``) receives the following options:
+
+to_lang, from_lang='en', secret_access_key=None, base_url="https://translate.astian.org/"
+
+    * ``to_lang``: language you want to translate
+    * ``from_lang``: Language of the text being translated  (optional): as default ``autodetect``
+    * ``secret_access_key``: LibreTranslate API key
+	* ``base_url``: LibreTranslate instance url
+
+for further information abount the provider:
+
+    https://libretranslate.com
+    http://github.com/LibreTranslate/LibreTranslate
