@@ -32,7 +32,7 @@ def test_provider_mymemory_make_request_with_valid_email(mock_requests):
 
 @mock.patch('requests.post')
 @mock.patch('requests.get')
-def test_provider_microsoft_make_request(mock_requests_get, mock_requests_post):
+def xtest_provider_microsoft_make_request(mock_requests_get, mock_requests_post):
     class MockRequests:
         content = b'token'
 

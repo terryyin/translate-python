@@ -1,6 +1,11 @@
 Changelog
 ---------
 
+3.6.1
+-----
+
+* Add LibreTranslate
+
 3.5.0
 -----
 
