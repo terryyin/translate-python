@@ -167,6 +167,7 @@ Please send pull requests, very much appreciated.
 
 1. Fork the `repository <https://github.com/terryyin/translate-python>`_ on GitHub.
 2. Make a branch off of master and commit your changes to it.
+3. (Optional) if you want an isolated environment, you can install nixOS (https://nixos.org) and run ``nix-shell --pure`` under the project folder
 3. Install requirements. ``pip install -r requirements-dev.txt``
 4. Install pre-commit. ``pre-commit install``
 5. Run the tests with ``py.test -vv -s``
