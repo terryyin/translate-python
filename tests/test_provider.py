@@ -45,17 +45,3 @@ def xtest_provider_microsoft_make_request(mock_requests_get, mock_requests_post)
     provider._make_request('test')
     assert mock_requests_get.called
     assert mock_requests_post.called
-
-@mock.patch("requests.post")
-def test_provider_libre_make_request(mock_requests_get, mock_requests_post):
-    from_lang = "zh"
-    to_lang = "en"
-    provider = LibreProvider(
-        to_lang=to_lang,
-        from_lang=from_lang,
-        headers={},
-        base_url="http://localhost:5000/",
-    )
-
-    provider._make_request("test")
-    assert mock_requests_post.called
