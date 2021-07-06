@@ -7,7 +7,7 @@ Translate Tool in Python
 
 Translate is a simple but powerful translation tool written in python with with support for
 multiple translation providers. By now we offer integration with Microsoft Translation API,
-Translated MyMemory API and DeepL's free and pro APIs
+Translated MyMemory API, LibreTranslate, and DeepL's free and pro APIs
 
 
 Why Should I Use This?
