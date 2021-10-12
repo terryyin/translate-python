@@ -19,6 +19,7 @@ class LibreProvider(BaseProvider):
 
     def __init__(self, to_lang, from_lang='en', secret_access_key=None, region=None, base_url=None, **kwargs):
         super().__init__(to_lang)
+        self.from_lang = from_lang
         self.base_url = base_url
         self.api = LibreTranslateAPI(base_url, secret_access_key)
 
