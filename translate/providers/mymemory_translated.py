@@ -14,7 +14,7 @@ class MyMemoryProvider(BaseProvider):
 
     Usage Tips: Use a valid email instead of the default.
         With a valid email you get 10 times more words/day to translate.
-    For further infomations checkout:
+    For further information checkout:
     http://mymemory.translated.net/doc/usagelimits.php
                                                     Tips from: @Bachstelze
     '''
