@@ -126,7 +126,7 @@ Use As A Python Module
 .. code-block:: python
 
    In [1]: from translate import Translator
-   In [2]: translator= Translator(to_lang="zh")
+   In [2]: translator = Translator(to_lang="zh")
    In [3]: translation = translator.translate("This is a pen.")
    Out [3]: 这是一支笔
 
@@ -147,7 +147,7 @@ Use a different translation provider
 
 The DeepL Provider
 ~~~~~~~~~~~~~~~~~~
-To use DeepL's pro API, pass an additional parameter called pro to the Translator object and set it to True and use your pro authentication key as the secret_access_key
+To use DeepL's pro API, pass an additional parameter named pro to the Translator object and set it to True and use your pro authentication key as the secret_access_key
 
 .. code-block:: python
 
@@ -171,7 +171,7 @@ Please send pull requests, very much appreciated.
 3. Install requirements. ``pip install -r requirements-dev.txt``
 4. Install pre-commit. ``pre-commit install``
 5. Run the tests with ``py.test -vv -s``
-6. Create a Pull Request with your contribution
+6. Create a Pull Request with your contribution.
 
 
 
