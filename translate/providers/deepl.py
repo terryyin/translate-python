@@ -37,6 +37,7 @@ class DeeplProvider(BaseProvider):
             params['source_lang'] = self.from_lang
 
         response = requests.post(self.base_url, params=params, headers=self.headers, json=[{}])
+        response.raise_for_status()
         return json.loads(response.text)
 
     def get_translation(self, text):

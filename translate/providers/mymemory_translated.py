@@ -36,6 +36,7 @@ class MyMemoryProvider(BaseProvider):
             params['de'] = self.email
 
         response = requests.get(self.base_url, params=params, headers=self.headers)
+        response.raise_for_status()
         return response.json()
 
     def get_translation(self, text):

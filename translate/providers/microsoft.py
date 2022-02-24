@@ -36,6 +36,7 @@ class MicrosoftProvider(BaseProvider):
             params['from'] = self.from_lang
 
         response = requests.post(self.base_url, params=params, headers=self.headers, json=data)
+        response.raise_for_status()
 
         return json.loads(response.text)
 
