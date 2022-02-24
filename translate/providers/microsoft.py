@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 # encoding: utf-8
-from datetime import timedelta
-from datetime import datetime
 
 import requests
 import json

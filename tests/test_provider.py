@@ -5,7 +5,7 @@ try:
 except Exception:
     import mock
 
-from translate.providers import MyMemoryProvider, MicrosoftProvider, LibreProvider
+from translate.providers import MyMemoryProvider, MicrosoftProvider
 
 
 def test_provider_mymemory_languages_attribute():
