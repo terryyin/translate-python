@@ -21,6 +21,7 @@ class MyMemoryProvider(BaseProvider):
     '''
     name = 'MyMemory'
     base_url = 'http://api.mymemory.translated.net/get'
+    session = None
 
     def __init__(self, **kwargs):
         try:
@@ -36,7 +37,9 @@ class MyMemoryProvider(BaseProvider):
         if self.email:
             params['de'] = self.email
 
-        response = requests.get(self.base_url, params=params, headers=self.headers)
+        if self.session is None:
+            self.session = requests.Session()
+        response = self.session.get(self.base_url, params=params, headers=self.headers)
         response.raise_for_status()
         return response.json()
 

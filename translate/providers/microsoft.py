@@ -18,6 +18,7 @@ class MicrosoftProvider(BaseProvider):
     '''
     name = 'Microsoft'
     base_url = 'https://api.cognitive.microsofttranslator.com/translate'
+    session = None
 
     def _make_request(self, text):
         self.headers.update({"Ocp-Apim-Subscription-Key": self.secret_access_key})
@@ -35,7 +36,9 @@ class MicrosoftProvider(BaseProvider):
         if self.from_lang != TRANSLATION_FROM_DEFAULT:
             params['from'] = self.from_lang
 
-        response = requests.post(self.base_url, params=params, headers=self.headers, json=data)
+        if self.session is None:
+            self.session = requests.Session()
+        response = self.session.post(self.base_url, params=params, headers=self.headers, json=data)
         response.raise_for_status()
 
         return json.loads(response.text)

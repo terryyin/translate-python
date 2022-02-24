@@ -17,6 +17,7 @@ class DeeplProvider(BaseProvider):
     name = 'Deepl'
     base_free_url = 'https://api-free.deepl.com/v2/translate'
     base_pro_url = 'https://api.deepl.com/v2/translate'
+    session = None
 
     def __init__(self, **kwargs):
         try:
@@ -36,7 +37,9 @@ class DeeplProvider(BaseProvider):
         if self.from_lang != TRANSLATION_FROM_DEFAULT:
             params['source_lang'] = self.from_lang
 
-        response = requests.post(self.base_url, params=params, headers=self.headers, json=[{}])
+        if self.session is None:
+            self.session = requests.Session()
+        response = self.session.post(self.base_url, params=params, headers=self.headers, json=[{}])
         response.raise_for_status()
         return json.loads(response.text)
 
