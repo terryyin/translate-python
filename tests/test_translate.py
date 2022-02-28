@@ -75,6 +75,16 @@ def test_translate_with_multiple_sentences():
     assert u'是或否' in translation
 
 
+@vcr.use_cassette
+def test_translate_with_HTTPError():
+    import requests
+    t = Translator(to_lang='de', provider='mymemory')
+    t.provider.base_url += '-nonsense'
+    with pytest.raises(requests.HTTPError) as error:
+        t.translate('hello')
+    assert '404' in str(error)
+
+
 @mock.patch('requests.get')
 def test_tranlate_taking_secondary_match(mock_requests, main_translation_not_found):
     mock_requests.return_value.json.return_value = main_translation_not_found
