@@ -8,7 +8,7 @@ except Exception:
 import pytest
 
 from translate import Translator
-from translate.exceptions import InvalidProviderError
+from translate.exceptions import InvalidProviderError, TranslationError
 from translate.providers import MyMemoryProvider
 
 from .vcr_conf import vcr
@@ -83,6 +83,15 @@ def test_translate_with_HTTPError():
     with pytest.raises(requests.HTTPError) as error:
         t.translate('hello')
     assert '404' in str(error)
+
+
+@vcr.use_cassette
+def test_translate_with_status_error():
+    import requests
+    t = Translator(to_lang='de', provider='mymemory', email='invalid')
+    with pytest.raises((TranslationError, requests.HTTPError)) as error:
+        t.translate('hello again!')
+    assert 'INVALID EMAIL' in str(error).upper()
 
 
 @mock.patch('requests.get')

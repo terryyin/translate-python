@@ -3,6 +3,7 @@
 import requests
 
 from .base import BaseProvider
+from ..exceptions import TranslationError
 
 
 class MyMemoryProvider(BaseProvider):
@@ -43,6 +44,10 @@ class MyMemoryProvider(BaseProvider):
         data = self._make_request(text)
 
         translation = data['responseData']['translatedText']
+        if data['responseStatus'] != 200:
+            e = TranslationError(translation)
+            e.json = data
+            raise e
         if translation:
             return translation
         else:
