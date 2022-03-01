@@ -33,13 +33,12 @@ def save_version():
     mo = re.search(VSRE, content_file, re.M)
     current_version = mo.group(1)
 
-    content_file = content_file.replace(current_version, "{}".format(version))
+    content_file_new = content_file.replace(current_version, "{}".format(version))
 
+    if content_file_new == content_file:
+        return
     with open(version_path, 'w') as version_file_write:
         version_file_write.write(content_file)
-
-
-save_version()
 
 
 class VersionCommand(Command):
@@ -57,7 +56,7 @@ class VersionCommand(Command):
 
 
 # Get the long description
-with codecs.open(os.path.join(here, 'README.rst')) as f:
+with codecs.open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = '\n{}'.format(f.read())
 
 # Get change log
@@ -73,7 +72,9 @@ with codecs.open(os.path.join(here, 'requirements-dev.txt')) as f:
     tests_requirements = [line.replace('\n', '') for line in f.readlines() if not line == '-r requirements.txt\n']
 
 
-setup(
+def run():
+    save_version()
+    return setup(
     author='Terry Yin',
     author_email='terry.yinze@gmail.com',
     classifiers=[
@@ -106,3 +107,6 @@ setup(
     url='https://github.com/terryyin/google-translate-python',
     version=version,
 )
+
+if __name__ == "__main__":
+    run()
