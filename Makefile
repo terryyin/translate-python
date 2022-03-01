@@ -19,6 +19,8 @@ lint:
 
 pip-install:
 	pip install --user -r requirements-dev.txt
+pip-install-build:
+	pip install --user -r requirements-build.txt
 
 pip-upgrade:
 	pip install --user --upgrade -r requirements-dev.txt
@@ -30,7 +32,7 @@ cov:
 cov-report:
 	py.test -vv --cov-report=html tests
 
-test: pip-install
+test: pip-install-build
 	py.test -vv -s
 
 build: test
