@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # encoding: utf-8
-import requests
 from libretranslatepy import LibreTranslateAPI
-import json
 
 from .base import BaseProvider
 from ..exceptions import TranslationError

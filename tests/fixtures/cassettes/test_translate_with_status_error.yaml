@@ -1,0 +1,50 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebit/535.19(KHTML, like
+        Gecko) Chrome/18.0.1025.168 Safari/535.19
+    method: GET
+    uri: http://api.mymemory.translated.net/get?q=hello+again%21&langpair=en%7Cde&de=invalid
+  response:
+    body:
+      string: '{"responseData":{"translatedText":"INVALID EMAIL PROVIDED"},"quotaFinished":null,"mtLangSupported":null,"responseDetails":"INVALID
+        EMAIL PROVIDED","responseStatus":"403","responderId":null,"exception_code":null,"matches":""}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '224'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Mon, 28 Feb 2022 17:46:15 GMT
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - Apache/2.4.29 (Ubuntu)
+      X-Backend-Content-Length:
+      - '10'
+      X-Embedded-Status:
+      - '200'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

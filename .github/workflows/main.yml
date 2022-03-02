@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches:
+    - master
+    - _ci_test
+  pull_request:
+    branches:
+    - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+##    runs-on: windows-2019
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.7', '3.10']
+        architecture: ['x64']
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+        architecture: ${{ matrix.architecture }}
+
+    - name: Show runner information
+      run: |
+        python --version
+        pip --version
+
+    # Minimal pip requirements for test & bdist_wheel
+    - name: Install requirements
+      run: make pip-install-build
+
+    - name: Run tests
+      run: make test
+
+    - name: Build wheels
+      run: |
+        python setup.py bdist_wheel
+
+    - uses: actions/upload-artifact@v2
+      if: ${{ always() }}
+      with:
+        name: wheels
+        path: dist/*.whl
