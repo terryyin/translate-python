@@ -6,7 +6,7 @@ from .exceptions import InvalidProviderError
 from .providers import MyMemoryProvider, MicrosoftProvider, DeeplProvider, LibreProvider
 
 DEFAULT_PROVIDER = MyMemoryProvider
-TRANSLATION_API_MAX_LENGHT = 1000
+TRANSLATION_API_MAX_LENGTH = 1000
 
 PROVIDERS_CLASS = {
     'mymemory': MyMemoryProvider,
@@ -41,5 +41,5 @@ class Translator:
         if self.from_lang == self.to_lang:
             return text
 
-        text_list = wrap(text, TRANSLATION_API_MAX_LENGHT, replace_whitespace=False)
+        text_list = wrap(text, TRANSLATION_API_MAX_LENGTH, replace_whitespace=False)
         return ' '.join(self.provider.get_translation(text_wraped) for text_wraped in text_list)
