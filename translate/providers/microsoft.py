@@ -21,6 +21,7 @@ class MicrosoftProvider(BaseProvider):
     def _make_request(self, text):
         self.headers.update({"Ocp-Apim-Subscription-Key": self.secret_access_key})
         self.headers.update({"Ocp-Apim-Subscription-Region": self.region or "westeurope"})
+        self.headers.update({"Content-type": "application/json"})
 
         params = {
                 'to': self.to_lang,
