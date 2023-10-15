@@ -26,10 +26,10 @@ class DeeplProvider(BaseProvider):
             super(DeeplProvider, self).__init__(**kwargs)
         self.pro = self.kwargs.get('pro', False)
         self.base_url = self.base_pro_url if self.pro else self.base_free_url
-
+        self.headers.update({'Authorization': f'DeepL-Auth-Key {self.secret_access_key}'})
+        
     def _make_request(self, text):
         params = {
-            'auth_key': self.secret_access_key,
             'target_lang': self.to_lang,
             'text': text
         }
@@ -39,7 +39,7 @@ class DeeplProvider(BaseProvider):
 
         if self.session is None:
             self.session = requests.Session()
-        response = self.session.post(self.base_url, params=params, headers=self.headers, json=[{}])
+        response = self.session.post(self.base_url, params=params, headers=self.headers)
         response.raise_for_status()
         return json.loads(response.text)
 
