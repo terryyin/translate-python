@@ -91,6 +91,7 @@ Options
       --secret_access_key TEXT  Set the secret access key used to get provider
                                 oAuth token.
       -o, --output_only         Set to display the translation only.
+      -r, --region TEXT         Set to pass a region in to API calls that require it.
       --help                    Show this message and exit.
 
 

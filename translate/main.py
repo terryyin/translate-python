@@ -140,6 +140,12 @@ def config_file(ctx, from_lang, to_lang, provider, secret_access_key):
     help="Set to use DeepL's pro API.",
     required=False,
 )
+@click.option(
+    'region', '--region', '-r',
+    default=get_config_info('region'),
+    help="Region for apis",
+    required=False,
+)
 @click.argument('text', nargs=-1, type=click.STRING, required=True)
 def main(from_lang, to_lang, provider, secret_access_key, output_only, pro, text):
     """
@@ -163,6 +169,7 @@ def main(from_lang, to_lang, provider, secret_access_key, output_only, pro, text
     if provider != DEFAULT_PROVIDER:
         kwargs['secret_access_key'] = secret_access_key
         kwargs['pro'] = pro
+        kwargs['region'] = region
 
     translator = Translator(**kwargs)
     translation = translator.translate(text)
