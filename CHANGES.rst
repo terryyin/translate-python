@@ -1,5 +1,9 @@
 Changelog
 ---------
+3.7.0
+-----
+
+* Adds region flag to CLI
 
 3.6.1
 -----
