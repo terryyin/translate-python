@@ -1,5 +1,10 @@
 Changelog
 ---------
+3.7.1
+-----
+
+* Bugfix for region flag to CLI
+
 3.7.0
 -----
 
