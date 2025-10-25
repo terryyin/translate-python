@@ -89,6 +89,7 @@ Use As A Python Module
 You can use translate as a Python module, imported in the code. Function could use following parameters:
 
 ::
+   
    Translator(from_lang="fr", to_lang="it", provider="deepl", secret_access_key="TOKEN", region="westeurope")
 
    Options:
