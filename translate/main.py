@@ -149,7 +149,7 @@ def config_file(ctx, from_lang, to_lang, provider, secret_access_key):
 @click.argument('text', nargs=-1, type=click.STRING, required=True)
 def main(from_lang, to_lang, provider, secret_access_key, output_only, pro, text):
     """
-    Python command line tool to make on line translations
+    Python command line tool to make online translations
 
     \b
     Example:
