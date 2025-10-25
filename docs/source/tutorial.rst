@@ -89,15 +89,15 @@ Use As A Python Module
 You can use translate as a Python module, imported in the code. Function could use following parameters:
 
 ::
-   
+
    Translator(from_lang="fr", to_lang="it", provider="deepl", secret_access_key="TOKEN", region="westeurope")
 
    Options:
       from_lang                 Language, you are going to translate from. Could be any ISO 639-1 country code, the default value is "autodetect". (optional)
       to_lang                   Language, you are going to translate into. Could be any ISO 639-1 country code.
       provider                  API translator used to make translation, could be any of listed in providers.rst (optional)
-      secret_access_key         Secret token, used by some API's. (optional)
-      region                    API region, used by some API's. (optional)
+      secret_access_key         Secret token, used by some APIs. (optional)
+      region                    API region, used by some APIs. (optional)
 
 Any parameters could be not only strings, but any other variables with string Type.
 
