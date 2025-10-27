@@ -10,7 +10,7 @@ class BaseProvider:
     name = ''
     base_url = ''
 
-    def __init__(self, to_lang, from_lang='en', secret_access_key=None, region=None, **kwargs):
+    def __init__(self, to_lang, from_lang='en', secret_access_key=None, region=None, folder_id=None, **kwargs):
         self.headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebit/535.19'
                                       '(KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19'}
         self.from_lang = from_lang

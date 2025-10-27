@@ -13,3 +13,4 @@ tox
 twine
 vcrpy
 wheel
+setuptools

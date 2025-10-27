@@ -9,9 +9,9 @@ except ImportError:
 import locale
 import sys
 
-from .translate import Translator
-from .version import __version__
-from .constants import CONFIG_FILE_PATH, DEFAULT_PROVIDER, TRANSLATION_FROM_DEFAULT
+from translate import Translator
+from version import __version__
+from constants import CONFIG_FILE_PATH, DEFAULT_PROVIDER, TRANSLATION_FROM_DEFAULT
 
 
 here = os.path.dirname(os.path.abspath(__file__))
@@ -170,6 +170,7 @@ def main(from_lang, to_lang, provider, secret_access_key, output_only, pro, text
         kwargs['secret_access_key'] = secret_access_key
         kwargs['pro'] = pro
         kwargs['region'] = region
+        kwargs['folder_id'] = folder_id
 
     translator = Translator(**kwargs)
     translation = translator.translate(text)
