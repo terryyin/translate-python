@@ -2,6 +2,7 @@
 # encoding: utf-8
 
 from abc import ABCMeta, abstractmethod
+import requests
 
 
 class BaseProvider:
@@ -18,6 +19,7 @@ class BaseProvider:
         self.secret_access_key = secret_access_key
         self.region = region
         self.kwargs = kwargs
+        self.session = requests.Session()
 
     @abstractmethod
     def get_translation(self, params):

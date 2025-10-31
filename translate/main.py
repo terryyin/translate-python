@@ -9,9 +9,10 @@ except ImportError:
 import locale
 import sys
 
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from translate import Translator
-from version import __version__
-from constants import CONFIG_FILE_PATH, DEFAULT_PROVIDER, TRANSLATION_FROM_DEFAULT
+from translate.version import __version__
+from .constants import CONFIG_FILE_PATH, DEFAULT_PROVIDER, TRANSLATION_FROM_DEFAULT
 
 
 here = os.path.dirname(os.path.abspath(__file__))
