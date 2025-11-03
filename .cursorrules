@@ -1,0 +1,25 @@
+## Development Environment
+
+### Getting Started
+
+**Important:** Run `nix develop` in every new terminal session to activate the development environment with all required dependencies and correct Python paths.
+
+## Testing
+
+### How to Run Tests
+
+**For humans:**
+- Run tests using pytest: `pytest` or `make test`
+- The test configuration is in `pytest.ini`
+- Tests are located in the `tests/` directory
+
+**For AI assistants:**
+- Use `nix develop -c pytest` to run tests in the Nix development environment
+- Use `nix develop -c make test` to run tests via Makefile
+- This ensures tests run in the correct environment with all dependencies
+
+### Test Configuration
+- Test paths: `tests/`
+- Coverage reporting: enabled with `--cov=translate`
+- Verbose output: `-vv` flag enabled by default
+

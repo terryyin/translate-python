@@ -18,12 +18,12 @@ lint:
 	pre-commit run -av
 
 pip-install:
-	pip install --user -r requirements-dev.txt
+	pip install --user --break-system-packages -r requirements-dev.txt
 pip-install-build:
-	pip install --user -r requirements-build.txt
+	pip install --user --break-system-packages -r requirements-build.txt
 
 pip-upgrade:
-	pip install --user --upgrade -r requirements-dev.txt
+	pip install --user --upgrade --break-system-packages -r requirements-dev.txt
 
 cov:
 	coverage report -m
