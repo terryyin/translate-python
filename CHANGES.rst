@@ -1,5 +1,15 @@
 Changelog
 ---------
+3.8.0
+-----
+
+* Add Yandex Translate API provider support
+* Add Nix development environment (flake.nix) for reproducible builds
+* Add folder_id and is_iam flags to CLI for Yandex provider configuration
+* Enhance base provider to support folder_id parameter
+* Update documentation with Yandex provider details
+* Add comprehensive tests for Yandex provider
+
 3.7.1
 -----
 
