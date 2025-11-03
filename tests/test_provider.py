@@ -5,7 +5,7 @@ try:
 except Exception:
     import mock
 
-from translate.providers import MyMemoryProvider, MicrosoftProvider
+from translate.providers import MyMemoryProvider, MicrosoftProvider, YandexProvider
 
 
 def test_provider_mymemory_languages_attribute():
@@ -41,3 +41,21 @@ def test_provider_microsoft_make_request(mock_requests_post):
     provider = MicrosoftProvider(to_lang='en', headers={}, secret_access_key='secret')
     provider._make_request('test')
     assert mock_requests_post.called
+
+@mock.patch('requests.Session.post')
+def test_provider_yandex_make_request(mock_requests_post):
+    class MockResponse:
+        text = '"dummyjson"'
+        def raise_for_status(self):
+            return False
+
+    mock_requests_post.return_value = MockResponse()
+    provider = YandexProvider(to_lang='en', secret_access_key='secret', folder_id='some_id')
+    provider.get_translation('test')
+    assert mock_requests_post.called
+
+    args, kwargs = mock_requests_post.call_args
+    assert 'Authorization' in kwargs['headers']
+    assert kwargs['json']['folderId'] == 'some_id'
+    assert kwargs['json']['targetLanguageCode'] == 'en'
+    assert kwargs['json']['texts'] == 'test'

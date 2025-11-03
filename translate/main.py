@@ -9,8 +9,9 @@ except ImportError:
 import locale
 import sys
 
-from .translate import Translator
-from .version import __version__
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+from translate import Translator
+from translate.version import __version__
 from .constants import CONFIG_FILE_PATH, DEFAULT_PROVIDER, TRANSLATION_FROM_DEFAULT
 
 
@@ -149,7 +150,7 @@ def config_file(ctx, from_lang, to_lang, provider, secret_access_key):
 @click.argument('text', nargs=-1, type=click.STRING, required=True)
 def main(from_lang, to_lang, provider, secret_access_key, output_only, pro, text, region):
     """
-    Python command line tool to make on line translations
+    Python command line tool to make online translations
 
     \b
     Example:
@@ -170,6 +171,7 @@ def main(from_lang, to_lang, provider, secret_access_key, output_only, pro, text
         kwargs['secret_access_key'] = secret_access_key
         kwargs['pro'] = pro
         kwargs['region'] = region
+        kwargs['folder_id'] = folder_id
 
     translator = Translator(**kwargs)
     translation = translator.translate(text)

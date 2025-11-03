@@ -3,7 +3,8 @@
 from textwrap import wrap
 
 from .exceptions import InvalidProviderError
-from .providers import MyMemoryProvider, MicrosoftProvider, DeeplProvider, LibreProvider
+from .providers import MyMemoryProvider, MicrosoftProvider, DeeplProvider, LibreProvider, YandexProvider
+from .constants import TRANSLATION_FROM_DEFAULT
 
 DEFAULT_PROVIDER = MyMemoryProvider
 TRANSLATION_API_MAX_LENGTH = 1000
@@ -13,11 +14,12 @@ PROVIDERS_CLASS = {
     'microsoft': MicrosoftProvider,
     'deepl': DeeplProvider,
     'libre': LibreProvider,
+    'yandex': YandexProvider
 }
 
 
 class Translator:
-    def __init__(self, to_lang, from_lang='en', provider=None, secret_access_key=None, region=None, **kwargs):
+    def __init__(self, to_lang, from_lang=TRANSLATION_FROM_DEFAULT, provider=None, secret_access_key=None, region=None, folder_id=None, **kwargs):
         self.available_providers = list(PROVIDERS_CLASS.keys())
         self.from_lang = from_lang
         self.to_lang = to_lang
@@ -34,6 +36,7 @@ class Translator:
             to_lang=to_lang,
             secret_access_key=secret_access_key,
             region=region,
+            folder_id=folder_id,
             **kwargs
         )
 

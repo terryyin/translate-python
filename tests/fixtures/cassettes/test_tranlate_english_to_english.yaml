@@ -1,0 +1,84 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebit/535.19(KHTML, like
+        Gecko) Chrome/18.0.1025.168 Safari/535.19
+    method: GET
+    uri: http://api.mymemory.translated.net/get?q=why&langpair=autodetect%7Cen
+  response:
+    body:
+      string: "<html>\r\n<head><title>301 Moved Permanently</title></head>\r\n<body>\r\n<center><h1>301
+        Moved Permanently</h1></center>\r\n</body>\r\n</html>\r\n"
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '134'
+      Content-Type:
+      - text/html
+      Date:
+      - Fri, 31 Oct 2025 16:26:42 GMT
+      Location:
+      - https://api.mymemory.translated.net:443/get?q=why&langpair=autodetect%7Cen
+      Server:
+      - awselb/2.0
+    status:
+      code: 301
+      message: Moved Permanently
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebit/535.19(KHTML, like
+        Gecko) Chrome/18.0.1025.168 Safari/535.19
+    method: GET
+    uri: https://api.mymemory.translated.net/get?q=why&langpair=autodetect%7Cen
+  response:
+    body:
+      string: '{"responseData":{"translatedText":"PLEASE SELECT TWO DISTINCT LANGUAGES"},"quotaFinished":null,"mtLangSupported":null,"responseDetails":"PLEASE
+        SELECT TWO DISTINCT LANGUAGES","responseStatus":"403","responderId":null,"exception_code":null,"matches":""}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '252'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 31 Oct 2025 16:26:43 GMT
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - Apache/2.4.41 (Ubuntu)
+      X-Backend-Content-Length:
+      - '10'
+      X-Embedded-Status:
+      - '200'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1
