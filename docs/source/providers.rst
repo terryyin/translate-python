@@ -59,3 +59,24 @@ for further information abount the provider:
 
     https://libretranslate.com
     http://github.com/LibreTranslate/LibreTranslate
+
+YandexProvider
+--------------
+
+Yandex Cloud Translate API provider supporting both API key and IAM token authentication
+
+``YandexProvider`` (located at ``translate.providers``) receives the following options:
+
+to_lang, from_lang='autodetect', secret_access_key=None, folder_id=None, is_iam=False, base_url=None
+
+    * ``to_lang``: language you want to translate
+    * ``from_lang``: Language of the text being translated  (optional): as default ``autodetect``
+    * ``secret_access_key``: Yandex API key or IAM token
+    * ``folder_id``: Yandex Cloud folder ID (optional but may be required)
+    * ``is_iam``: Set to True to use IAM token authentication instead of API key (default: False)
+    * ``base_url``: Custom API endpoint URL (optional)
+
+for further information about the provider:
+
+    https://translate.yandex.com/
+    https://yandex.cloud/en/docs/translate/

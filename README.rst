@@ -7,7 +7,7 @@ Translate Tool in Python
 
 Translate is a simple but powerful translation tool written in python with with support for
 multiple translation providers. By now we offer integration with Microsoft Translation API,
-Translated MyMemory API, LibreTranslate, and DeepL's free and pro APIs
+Translated MyMemory API, LibreTranslate, DeepL's free and pro APIs, and Yandex Translate API
 
 
 Why Should I Use This?
@@ -152,7 +152,16 @@ To use DeepL's pro API, pass an additional parameter named pro to the Translator
 
 .. code-block:: python
 
-    In: translator = Translator(provider='microsoft', to_lang=to_lang, secret_access_key=secret, pro=True)
+    In: translator = Translator(provider='deepl', to_lang=to_lang, secret_access_key=secret, pro=True)
+
+The Yandex Provider
+~~~~~~~~~~~~~~~~~~~
+Yandex Translate API supports both API key and IAM token authentication. To use IAM token authentication, pass the is_iam parameter set to True. You may also need to provide a folder_id for your Yandex Cloud project.
+
+.. code-block:: python
+
+    In: translator = Translator(provider='yandex', to_lang=to_lang, secret_access_key='your_api_key', folder_id='your_folder_id')
+    In: translator = Translator(provider='yandex', to_lang=to_lang, secret_access_key='your_iam_token', folder_id='your_folder_id', is_iam=True)
 
 Documentation
 -------------
