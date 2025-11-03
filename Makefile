@@ -17,13 +17,16 @@ clean-build:
 lint:
 	pre-commit run -av
 
+# Check if Python version is 3.11+ for --break-system-packages flag
+BREAK_FLAG := $(shell python3 -c "import sys; exit(0 if sys.version_info >= (3, 11) else 1)" 2>/dev/null && echo "--break-system-packages" || echo "")
+
 pip-install:
-	pip install --user --break-system-packages -r requirements-dev.txt
+	pip install --user $(BREAK_FLAG) -r requirements-dev.txt
 pip-install-build:
-	pip install --user --break-system-packages -r requirements-build.txt
+	pip install --user $(BREAK_FLAG) -r requirements-build.txt
 
 pip-upgrade:
-	pip install --user --upgrade --break-system-packages -r requirements-dev.txt
+	pip install --user --upgrade $(BREAK_FLAG) -r requirements-dev.txt
 
 cov:
 	coverage report -m
