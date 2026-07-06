@@ -1,0 +1,103 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Adding a Translation Provider to Translate CLI
+
+This guide explains how to add or modify support for translation providers in the translate-python CLI.
+
+## Overview
+
+Each provider is a class that inherits from `BaseProvider` and implements HTTP calls to a translation API. Integration points:
+
+1. Provider class in `translate/providers/`
+2. Registration in `translate/providers/__init__.py`
+3. Mapping in `translate/translate.py` (`PROVIDERS_CLASS`)
+4. CLI options in `translate/main.py` (if the provider needs extra config)
+5. Tests in `tests/test_provider.py` and VCR cassettes in `tests/fixtures/cassettes/`
+
+## Step-by-Step Guide
+
+### 1. Create Provider Class
+
+Create a new file in `translate/providers/` (e.g. `myprovider.py`):
+
+```python
+from .base import BaseProvider
+from ..exceptions import TranslationError
+
+class MyProvider(BaseProvider):
+    name = 'MyProvider'
+    base_url = 'https://api.example.com/translate'
+
+    def get_translation(self, text):
+        response = self._make_request(text)
+        # parse response and return translated string
+        return translated_text
+```
+
+Use `self.session` (a `requests.Session`) from `BaseProvider` for HTTP calls. Raise `TranslationError` for API failures.
+
+### 2. Register the Provider
+
+Add to `translate/providers/__init__.py`:
+
+```python
+from .myprovider import MyProvider
+__all__ = [..., 'MyProvider']
+```
+
+Add to `PROVIDERS_CLASS` in `translate/translate.py`:
+
+```python
+PROVIDERS_CLASS = {
+    ...
+    'myprovider': MyProvider,
+}
+```
+
+### 3. Add CLI Support (if needed)
+
+If the provider needs API keys or extra options, add Click options in `translate/main.py` and pass them through to `Translator`. Config file keys go in `get_config_info` options tuple and `sample-python-translate.cfg`.
+
+### 4. Add Tests
+
+Add unit tests in `tests/test_provider.py` for request construction and response parsing. For integration-style tests, add VCR cassettes under `tests/fixtures/cassettes/` and use the existing `vcr_conf.py` setup (see `tests/test_translate.py` for examples).
+
+## Key Concepts
+
+### BaseProvider
+
+- Constructor accepts `to_lang`, `from_lang`, `secret_access_key`, `region`, `folder_id`, and `**kwargs`
+- Provides `self.session` for HTTP and default headers
+
+### Translator
+
+- Splits long text into chunks (`TRANSLATION_API_MAX_LENGTH`) before calling the provider
+- Selects provider by name from `PROVIDERS_CLASS`; defaults to MyMemory
+
+### CLI Entry Point
+
+- `translate-cli` is defined in `setup.py` as `translate.__main__:cli`
+- Tests for CLI behavior live in `tests/test_main.py`
+
+## Best Practices
+
+1. **Inheritance**: Extend `BaseProvider`; reuse `self.session` and constructor args
+2. **Testing**: Cover request params, error handling, and autodetect behavior; use VCR for real HTTP shapes
+3. **Documentation**: Update `docs/source/providers.rst` and `README.rst` when adding a provider
+4. **Secrets**: Never commit API keys; use config file or environment variables in tests
+
+## Testing Your Implementation
+
+```bash
+nix develop -c pytest                    # Run all tests
+nix develop -c pytest tests/test_provider.py  # Provider tests only
+```
+
+Reference existing implementations:
+- `mymemory_translated.py` for a simple GET-based API
+- `microsoft.py` / `deepl.py` for authenticated POST APIs
+- `yandex.py` for providers with extra CLI options (`folder_id`, IAM)

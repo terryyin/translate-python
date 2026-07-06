@@ -1,0 +1,35 @@
+---
+alwaysApply: true
+---
+# The fundamental development guideline for making any changes
+
+# Running command in terminal
+
+This project uses Nix to manage the development environment. Run `nix develop` once in every new terminal window to start the Nix environment. For AI agents, prefix terminal commands with `nix develop -c`:
+
+```
+nix develop -c <command>
+```
+
+**Git exception:** Run `git` directly (`git status`, `git diff`, `git commit`, etc.) — no Nix prefix.
+
+## Run Tests
+
+Always run all tests instead of just one test file:
+
+```bash
+nix develop -c pytest          # Run all tests
+nix develop -c make test       # Same via Makefile
+```
+
+## Run Tests and Format Checking
+
+```bash
+nix develop -c make lint       # pre-commit hooks (flake8, etc.)
+```
+
+## Automated Test Practices
+
+* All code and logic need to be covered by unit tests
+* Prefer end-to-end tests that exercise observable behavior (CLI output, translation results) over tests that mirror internal structure
+* Use VCR cassettes in `tests/fixtures/cassettes/` for HTTP-based provider tests; do not mock code unless it is about the file system
