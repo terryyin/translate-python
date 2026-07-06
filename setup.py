@@ -38,7 +38,7 @@ def save_version():
     if content_file_new == content_file:
         return
     with open(version_path, 'w') as version_file_write:
-        version_file_write.write(content_file)
+        version_file_write.write(content_file_new)
 
 
 class VersionCommand(Command):

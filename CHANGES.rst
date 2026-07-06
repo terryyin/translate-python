@@ -1,5 +1,12 @@
 Changelog
 ---------
+3.8.1
+-----
+
+* Publish to PyPI via GitHub Actions on version tag push (trusted publishing)
+* Remove local ``twine upload`` from ``make release``; tag push triggers CI publish
+* Document PyPI trusted publisher setup in release guide
+
 3.8.0
 -----
 
