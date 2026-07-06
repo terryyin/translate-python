@@ -12,7 +12,7 @@ interactions:
       - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebit/535.19(KHTML, like
         Gecko) Chrome/18.0.1025.168 Safari/535.19
     method: GET
-    uri: http://api.mymemory.translated.net/get-nonsense?q=hello&langpair=en%7Cde
+    uri: https://api.mymemory.translated.net/get-nonsense?q=hello&langpair=en%7Cde
   response:
     body:
       string: '<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">

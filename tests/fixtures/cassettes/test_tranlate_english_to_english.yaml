@@ -12,7 +12,7 @@ interactions:
       - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebit/535.19(KHTML, like
         Gecko) Chrome/18.0.1025.168 Safari/535.19
     method: GET
-    uri: http://api.mymemory.translated.net/get?q=why&langpair=autodetect%7Cen
+    uri: https://api.mymemory.translated.net/get?q=why&langpair=autodetect%7Cen
   response:
     body:
       string: "<html>\r\n<head><title>301 Moved Permanently</title></head>\r\n<body>\r\n<center><h1>301

@@ -12,7 +12,7 @@ interactions:
       - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebit/535.19(KHTML, like
         Gecko) Chrome/18.0.1025.168 Safari/535.19
     method: GET
-    uri: http://api.mymemory.translated.net/get?q=hello+again%21&langpair=en%7Cde&de=invalid
+    uri: https://api.mymemory.translated.net/get?q=hello+again%21&langpair=en%7Cde&de=invalid
   response:
     body:
       string: '{"responseData":{"translatedText":"INVALID EMAIL PROVIDED"},"quotaFinished":null,"mtLangSupported":null,"responseDetails":"INVALID

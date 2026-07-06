@@ -8,7 +8,7 @@ interactions:
       User-Agent: ['Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/535.19                                  (KHTML,
           like Gecko) Chrome/18.0.1025.168 Safari/535.19']
     method: GET
-    uri: http://api.mymemory.translated.net/get?q=What+is+%27yinyang%27%3F&langpair=en%7Czh
+    uri: https://api.mymemory.translated.net/get?q=What+is+%27yinyang%27%3F&langpair=en%7Czh
   response:
     body: {string: !!python/unicode "\r\n{\"responseData\":{\"translatedText\":\"\\\
         u4ec0\\u4e48\\u662f\\u201c\\u9634\\u9633\\u201d\\uff1f\",\"match\":0.85},\"\

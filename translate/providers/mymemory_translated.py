@@ -20,7 +20,7 @@ class MyMemoryProvider(BaseProvider):
                                                     Tips from: @Bachstelze
     '''
     name = 'MyMemory'
-    base_url = 'http://api.mymemory.translated.net/get'
+    base_url = 'https://api.mymemory.translated.net/get'
     session = None
 
     def __init__(self, **kwargs):

@@ -21,6 +21,11 @@ def test_provider_mymemory_default_email():
     assert provider.email == ''
 
 
+def test_provider_mymemory_uses_https():
+    provider = MyMemoryProvider(to_lang='en', headers={})
+    assert provider.base_url.startswith('https://')
+
+
 @mock.patch('requests.Session.get')
 def test_provider_mymemory_make_request_with_valid_email(mock_requests):
     mock_requests.return_value.json.return_value = {}
