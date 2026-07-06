@@ -42,7 +42,7 @@ build: test
 	python setup.py sdist
 	python setup.py bdist_wheel
 
+# Tag push triggers .github/workflows/release.yml to publish to PyPI.
 release: build
 	git tag `python setup.py -q version`
 	git push origin `python setup.py -q version`
-	twine upload dist/*
