@@ -7,7 +7,8 @@ try:
 except Exception:
     import mock
 
-from translate.main import main
+from translate import main as main_module
+from translate.main import get_config_info, main
 
 from .vcr_conf import vcr
 
@@ -47,6 +48,13 @@ def test_main_to_language_output_only(cli_runner):
 def test_main_from_language(cli_runner):
     result = cli_runner.invoke(main, ['--from', 'ja', '--to', 'zh', '美'])
     assert response_template.format('美') == result.output
+
+
+def test_get_config_info_malformed_file_falls_back_to_default(tmp_path):
+    config_file = tmp_path / 'broken.cfg'
+    config_file.write_text('[WRONG]\nfoo = bar\n')
+    with mock.patch.object(main_module, 'CONFIG_FILE_PATH', str(config_file)):
+        assert get_config_info('to_lang') == ''
 
 
 @mock.patch('translate.main.__version__', '0.0.0')
