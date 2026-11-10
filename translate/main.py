@@ -8,6 +8,10 @@ except ImportError:
     from ConfigParser import ConfigParser
 import locale
 import sys
+try:
+    from configparser import NoOptionError, NoSectionError
+except ImportError:
+    from ConfigParser import NoOptionError, NoSectionError
 
 from .translate import Translator
 from .version import __version__
@@ -26,7 +30,10 @@ def get_config_info(option):
     config_parser = ConfigParser()
     config_parser.read(config_file_path)
     default_section = 'DEFAULT'
-    return config_parser.get(default_section, option)
+    try:
+        return config_parser.get(default_section, option)
+    except (NoSectionError, NoOptionError):
+        return ''
 
 
 def generate_config(ctx, param, value):
