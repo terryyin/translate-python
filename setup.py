@@ -82,7 +82,7 @@ def run():
         'Intended Audience :: Education',
         'Intended Audience :: End Users/Desktop',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT License',
+        # 'License :: OSI Approved :: MIT License', # deprecated
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
@@ -94,6 +94,7 @@ def run():
     entry_points='''
         [console_scripts]
         translate-cli=translate.__main__:cli
+        translate-po=translate.translate_po:main
     ''',
     install_requires=install_requirements,
     keywords='translate translation command line',
