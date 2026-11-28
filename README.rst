@@ -163,6 +163,21 @@ Yandex Translate API supports both API key and IAM token authentication. To use 
     In: translator = Translator(provider='yandex', to_lang=to_lang, secret_access_key='your_api_key', folder_id='your_folder_id')
     In: translator = Translator(provider='yandex', to_lang=to_lang, secret_access_key='your_iam_token', folder_id='your_folder_id', is_iam=True)
 
+translate-po CLI Utility
+------------------------
+
+A CLI utility is provided to translate localised message catalogues (`messages.po` files) produced by the standard Python `gettext <https://docs.python.org/3/library/gettext.html>`_ localisation library:
+
+```shell
+translate-po -I /locales/zh/LC-MESSAGES/messages.po -P mymemory
+```
+
+For help, type:
+
+```shell
+translate-po -h
+```
+
 Documentation
 -------------
 
