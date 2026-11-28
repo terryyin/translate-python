@@ -126,7 +126,7 @@ def main():
         "-I",
         "--infile",
         help="Fully-qualified path to input messages.po file",
-        default="",
+        required=True,
     )
     ap.add_argument(
         "-P",
